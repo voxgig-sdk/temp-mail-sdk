@@ -1,0 +1,356 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Temp Mail API",
+    "description": "The Temp Mail API allows developers to programmatically create disposable email addresses for enhanced privacy and testing. Users can send and receive messages without revealing their real email addresses, making it an ideal solution for protecting personal information and automating processes.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Support",
+      "url": "https://www.juheapi.com/api-catalog/temp-mail"
+    },
+    "termsOfService": "https://www.juheapi.com/terms-of-service"
+  },
+  "servers": [
+    {
+      "url": "https://hub.juheapi.com/temp-mail/v1",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/create": {
+      "post": {
+        "summary": "Create Temporary Mailbox",
+        "description": "Generates a new disposable email address with a unique mailbox ID for receiving emails. The mailbox has a preset lifecycle (e.g., 600 seconds) and is automatically destroyed upon expiration.",
+        "operationId": "createMailbox",
+        "tags": [
+          "Mailbox"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "Optional parameters for mailbox creation",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "domain": {
+                    "type": "string",
+                    "description": "Optional domain for the temporary email address",
+                    "example": "tempmail.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Mailbox created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "Response code",
+                      "example": "0"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Response message",
+                      "example": "success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "Unique identifier for the mailbox",
+                          "example": "mailbox_12345"
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "Generated temporary email address",
+                          "example": "random123@tempmail.com"
+                        },
+                        "expires_at": {
+                          "type": "integer",
+                          "description": "Unix timestamp when the mailbox expires",
+                          "example": 1735689600
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful mailbox creation",
+                    "value": {
+                      "code": "0",
+                      "msg": "success",
+                      "data": {
+                        "id": "mailbox_12345",
+                        "email": "random123@tempmail.com",
+                        "expires_at": 1735689600
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-emails": {
+      "get": {
+        "summary": "Retrieve Emails",
+        "description": "Retrieves a list of all emails received by the temporary mailbox. Returns email details including sender, subject, body, and attachments.",
+        "operationId": "getEmails",
+        "tags": [
+          "Email"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Unique identifier of the temporary mailbox obtained from the create endpoint",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "mailbox_12345"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Emails retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "Response code",
+                      "example": "0"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Response message",
+                      "example": "success"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Email"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful email retrieval",
+                    "value": {
+                      "code": "0",
+                      "msg": "success",
+                      "data": [
+                        {
+                          "id": "email_id_1",
+                          "from": "sender@example.com",
+                          "subject": "Welcome!",
+                          "body": "Hello, this is a test email.",
+                          "attachments": []
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Missing or invalid mailbox ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Mailbox not found or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Email": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the email",
+            "example": "email_id_1"
+          },
+          "from": {
+            "type": "string",
+            "description": "Email address of the sender",
+            "example": "sender@example.com"
+          },
+          "subject": {
+            "type": "string",
+            "description": "Subject line of the email",
+            "example": "Welcome!"
+          },
+          "body": {
+            "type": "string",
+            "description": "Body content of the email",
+            "example": "Hello, this is a test email."
+          },
+          "attachments": {
+            "type": "array",
+            "description": "List of attachments in the email",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": {
+                  "type": "string",
+                  "description": "Name of the attachment file"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "Size of the attachment in bytes"
+                },
+                "content_type": {
+                  "type": "string",
+                  "description": "MIME type of the attachment"
+                }
+              }
+            }
+          },
+          "received_at": {
+            "type": "integer",
+            "description": "Unix timestamp when the email was received",
+            "example": 1735689600
+          }
+        },
+        "required": [
+          "id",
+          "from",
+          "subject",
+          "body",
+          "attachments"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Error code",
+            "example": "400"
+          },
+          "msg": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Invalid request parameters"
+          }
+        },
+        "required": [
+          "code",
+          "msg"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "API key for authentication. Obtain your key from the developer console."
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Mailbox",
+      "description": "Operations related to temporary mailbox creation and management"
+    },
+    {
+      "name": "Email",
+      "description": "Operations for retrieving and reading emails"
+    }
+  ]
+}

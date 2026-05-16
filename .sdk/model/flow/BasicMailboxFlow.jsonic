@@ -1,0 +1,18 @@
+# BasicMailboxFlow
+
+main: kit: flow: BasicMailboxFlow:
+{
+  entity: "mailbox",
+  kind: "basic",
+  name: "BasicMailboxFlow",
+  step: [
+    {
+      input: {
+        ref: "mailbox_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicMailboxFlow"
+}

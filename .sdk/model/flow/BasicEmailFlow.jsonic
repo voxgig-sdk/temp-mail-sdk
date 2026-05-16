@@ -1,0 +1,22 @@
+# BasicEmailFlow
+
+main: kit: flow: BasicEmailFlow:
+{
+  entity: "email",
+  kind: "basic",
+  name: "BasicEmailFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "email_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEmailFlow"
+}
