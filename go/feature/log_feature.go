@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/temp-mail-sdk/core"
+	"github.com/voxgig-sdk/temp-mail-sdk/go/core"
 )
 
 type LogFeature struct {

@@ -5,19 +5,22 @@
         "code": "s28",
         "data": {},
         "domain": "s2a",
-        "msg": "s2b"
+        "msg": "s2b",
+        "id": "MAILBOX00"
       },
       "MAILBOX01": {
         "code": "s50",
         "data": {},
         "domain": "s52",
-        "msg": "s53"
+        "msg": "s53",
+        "id": "MAILBOX01"
       },
       "MAILBOX02": {
         "code": "s78",
         "data": {},
         "domain": "s7a",
-        "msg": "s7b"
+        "msg": "s7b",
+        "id": "MAILBOX02"
       }
     }
   },

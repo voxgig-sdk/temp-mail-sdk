@@ -1,10 +1,10 @@
 package voxgigtempmailsdk
 
 import (
-	"github.com/voxgig-sdk/temp-mail-sdk/core"
-	"github.com/voxgig-sdk/temp-mail-sdk/entity"
-	"github.com/voxgig-sdk/temp-mail-sdk/feature"
-	_ "github.com/voxgig-sdk/temp-mail-sdk/utility"
+	"github.com/voxgig-sdk/temp-mail-sdk/go/core"
+	"github.com/voxgig-sdk/temp-mail-sdk/go/entity"
+	"github.com/voxgig-sdk/temp-mail-sdk/go/feature"
+	_ "github.com/voxgig-sdk/temp-mail-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

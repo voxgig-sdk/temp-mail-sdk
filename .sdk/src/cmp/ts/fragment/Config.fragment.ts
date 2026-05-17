@@ -29,7 +29,7 @@ class Config {
 
 
   options = {
-    base: 'https://hub.juheapi.com/temp-mail/v1',
+    base: '$$main.kit.info.servers.0.url$$',
 
     'AUTHBLOCK'headers: 'HEADERS',
 

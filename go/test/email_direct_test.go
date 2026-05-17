@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/temp-mail-sdk"
-	"github.com/voxgig-sdk/temp-mail-sdk/core"
+	sdk "github.com/voxgig-sdk/temp-mail-sdk/go"
+	"github.com/voxgig-sdk/temp-mail-sdk/go/core"
 )
 
 func TestEmailDirect(t *testing.T) {
