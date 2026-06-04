@@ -18,8 +18,25 @@ main: {
       termsOfService: "https://www.juheapi.com/terms-of-service"
       title: "Temp Mail API"
       version: "1.0.0"
+      tagline: "Generate disposable email addresses on demand for privacy, testing, and one-time signups"
+      homepage: "https://hub.juheapi.com/temp-mail/v1"
+      docs_url: "https://hub.juheapi.com/temp-mail/v1"
+      about_md: `Temp Mail API is a disposable-email service published on the [Juhe API](https://hub.juheapi.com/) hub. It lets developers programmatically create throwaway inboxes so users can send and receive messages without exposing a personal address.
+
+What you can do with the API:
+- Create a temporary email address via \`GET /temp-mail/v1/create\`
+- Use the generated address for verification flows, privacy-sensitive signups, or automated testing
+
+Operational notes (per the [freepublicapis.com listing](https://freepublicapis.com/temp-mail-api)):
+- Authentication is by API key, passed as an \`apikey\` URL parameter
+- CORS is disabled, so calls should be made server-side
+- The catalogue reports 100% reliability and around 1s average response time over the last 30 days
+- Rate limits and licence terms are not published on the listing`
+      entity_desc: {
+        email: "A disposable email address resource; created via `GET /temp-mail/v1/create` and used as the throwaway identity for sending or receiving messages."
+        mailbox: "The inbox associated with a generated temporary email address, used to access messages delivered to that address."
+      }
+      auth: false
     }
   }
-}
-
 }

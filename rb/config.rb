@@ -15,9 +15,6 @@ module TempMailConfig
       },
       "options" => {
         "base" => "https://hub.juheapi.com/temp-mail/v1",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
