@@ -1,22 +1,8 @@
 # TempMail SDK
 
-Generate disposable email addresses on demand for privacy, testing, and one-time signups
+Temp Mail API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Temp Mail API
-
-Temp Mail API is a disposable-email service published on the [Juhe API](https://hub.juheapi.com/) hub. It lets developers programmatically create throwaway inboxes so users can send and receive messages without exposing a personal address.
-
-What you can do with the API:
-- Create a temporary email address via `GET /temp-mail/v1/create`
-- Use the generated address for verification flows, privacy-sensitive signups, or automated testing
-
-Operational notes (per the [freepublicapis.com listing](https://freepublicapis.com/temp-mail-api)):
-- Authentication is by API key, passed as an `apikey` URL parameter
-- CORS is disabled, so calls should be made server-side
-- The catalogue reports 100% reliability and around 1s average response time over the last 30 days
-- Rate limits and licence terms are not published on the listing
 
 ## Try it
 
@@ -50,29 +36,31 @@ gem install temp-mail-sdk
 luarocks install temp-mail-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { TempMailSDK } from 'temp-mail'
 
-const client = new TempMailSDK({})
+const client = new TempMailSDK({
+  apikey: process.env.TEMP-MAIL_APIKEY,
+})
 
 // List all emails
 const emails = await client.Email().list()
+console.log(emails.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Email** | A disposable email address resource; created via `GET /temp-mail/v1/create` and used as the throwaway identity for sending or receiving messages. | `/get-emails` |
-| **Mailbox** | The inbox associated with a generated temporary email address, used to access messages delivered to that address. | `/create` |
+| **Email** |  | `/get-emails` |
+| **Mailbox** |  | `/create` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -113,12 +101,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from tempmail_sdk import TempMailSDK
 
-client = TempMailSDK({})
+client = TempMailSDK({
+    "apikey": os.environ.get("TEMP-MAIL_APIKEY"),
+})
 
 # List all emails
-emails, err = client.Email(None).list(None, None)
+emails, err = client.Email().list()
+print(emails)
 ```
 
 ### PHP
@@ -127,10 +119,13 @@ emails, err = client.Email(None).list(None, None)
 <?php
 require_once 'tempmail_sdk.php';
 
-$client = new TempMailSDK([]);
+$client = new TempMailSDK([
+    "apikey" => getenv("TEMP-MAIL_APIKEY"),
+]);
 
 // List all emails
-[$emails, $err] = $client->Email(null)->list(null, null);
+[$emails, $err] = $client->Email()->list();
+print_r($emails);
 ```
 
 ### Golang
@@ -138,10 +133,13 @@ $client = new TempMailSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/temp-mail-sdk/go"
 
-client := sdk.NewTempMailSDK(map[string]any{})
+client := sdk.NewTempMailSDK(map[string]any{
+    "apikey": os.Getenv("TEMP-MAIL_APIKEY"),
+})
 
 // List all emails
 emails, err := client.Email(nil).List(nil, nil)
+fmt.Println(emails)
 ```
 
 ### Ruby
@@ -149,10 +147,13 @@ emails, err := client.Email(nil).List(nil, nil)
 ```ruby
 require_relative "TempMail_sdk"
 
-client = TempMailSDK.new({})
+client = TempMailSDK.new({
+  "apikey" => ENV["TEMP-MAIL_APIKEY"],
+})
 
 # List all emails
-emails, err = client.Email(nil).list(nil, nil)
+emails, err = client.Email().list
+puts emails
 ```
 
 ### Lua
@@ -160,10 +161,13 @@ emails, err = client.Email(nil).list(nil, nil)
 ```lua
 local sdk = require("temp-mail_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("TEMP-MAIL_APIKEY"),
+})
 
 -- List all emails
-local emails, err = client:Email(nil):list(nil, nil)
+local emails, err = client:Email():list()
+print(emails)
 ```
 
 ## Unit testing in offline mode
@@ -182,25 +186,21 @@ const result = await client.Email().load({ id: 'test01' })
 ### Python
 
 ```python
-client = TempMailSDK.test(None, None)
-result, err = client.Email(None).load(
-    {"id": "test01"}, None
-)
+client = TempMailSDK.test()
+result, err = client.Email().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = TempMailSDK::test(null, null);
-[$result, $err] = $client->Email(null)->load(
-    ["id" => "test01"], null
-);
+$client = TempMailSDK::test();
+[$result, $err] = $client->Email()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Email(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -209,19 +209,15 @@ result, err := client.Email(nil).Load(
 ### Ruby
 
 ```ruby
-client = TempMailSDK.test(nil, nil)
-result, err = client.Email(nil).load(
-  { "id" => "test01" }, nil
-)
+client = TempMailSDK.test
+result, err = client.Email().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Email(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Email():load({ id = "test01" })
 ```
 
 ## How it works
@@ -325,10 +321,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Temp Mail API
-
-- Upstream: [https://hub.juheapi.com/temp-mail/v1](https://hub.juheapi.com/temp-mail/v1)
 
 ---
 

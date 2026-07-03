@@ -110,6 +110,7 @@ func mailboxBasicSetup(extra map[string]any) *entityTestSetup {
 		"TEMPMAIL_TEST_MAILBOX_ENTID": idmap,
 		"TEMPMAIL_TEST_LIVE":      "FALSE",
 		"TEMPMAIL_TEST_EXPLAIN":   "FALSE",
+		"TEMPMAIL_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["TEMPMAIL_TEST_MAILBOX_ENTID"])
@@ -120,6 +121,7 @@ func mailboxBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["TEMPMAIL_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["TEMPMAIL_APIKEY"],
 			},
 			extra,
 		})
