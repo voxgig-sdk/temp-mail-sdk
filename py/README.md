@@ -10,7 +10,7 @@ The Python SDK for the TempMail API — an entity-oriented client following Pyth
 
 ## Install
 ```bash
-pip install temp-mail-sdk
+pip install voxgig-sdk-temp-mail
 ```
 
 Or install from source:

@@ -10,13 +10,13 @@ The Ruby SDK for the TempMail API — an entity-oriented client using idiomatic 
 
 ## Install
 ```bash
-gem install temp-mail-sdk
+gem install voxgig-sdk-temp-mail
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "temp-mail-sdk"
+gem "voxgig-sdk-temp-mail"
 ```
 
 Then run:

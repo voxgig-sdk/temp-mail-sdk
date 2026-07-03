@@ -8,12 +8,14 @@ source = {
   dir = "temp-mail-sdk/lua"
 }
 description = {
-  summary = "TempMail SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Temp Mail public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/temp-mail-sdk",
+  issues_url = "https://github.com/voxgig-sdk/temp-mail-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "temp-mail" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

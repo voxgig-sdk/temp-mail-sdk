@@ -10,7 +10,7 @@ The Lua SDK for the TempMail API — an entity-oriented client using Lua convent
 
 ## Install
 ```bash
-luarocks install temp-mail-sdk
+luarocks install voxgig-sdk-temp-mail
 ```
 
 If the module is not yet published, add the source directory to
