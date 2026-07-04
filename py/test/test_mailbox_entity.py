@@ -44,9 +44,7 @@ class TestMailboxEntity:
         mailbox_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.mailbox"), "mailbox_ref01"))
 
-        mailbox_ref01_data_result, err = mailbox_ref01_ent.create(mailbox_ref01_data, None)
-        assert err is None
-        mailbox_ref01_data = helpers.to_map(mailbox_ref01_data_result)
+        mailbox_ref01_data = helpers.to_map(mailbox_ref01_ent.create(mailbox_ref01_data, None))
         assert mailbox_ref01_data is not None
 
 

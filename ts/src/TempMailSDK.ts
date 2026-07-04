@@ -3,6 +3,8 @@
 import { EmailEntity } from './entity/EmailEntity'
 import { MailboxEntity } from './entity/MailboxEntity'
 
+export type * from './TempMailTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -203,12 +205,28 @@ class TempMailSDK {
 
 
 
+  _email?: EmailEntity
+
+  // Idiomatic facade: `client.email.list()` / `client.email.load({ id })`.
+  get email(): EmailEntity {
+    return (this._email ??= new EmailEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.email` instead. */
   Email(data?: any) {
     const self = this
     return new EmailEntity(self,data)
   }
 
 
+  _mailbox?: MailboxEntity
+
+  // Idiomatic facade: `client.mailbox.list()` / `client.mailbox.load({ id })`.
+  get mailbox(): MailboxEntity {
+    return (this._mailbox ??= new MailboxEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.mailbox` instead. */
   Mailbox(data?: any) {
     const self = this
     return new MailboxEntity(self,data)

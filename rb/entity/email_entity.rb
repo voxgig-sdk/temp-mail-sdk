@@ -45,6 +45,7 @@ class EmailEntity
     end
   end
 
+  # @return [Email, Hash] the current Email data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class EmailEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Email fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class EmailEntity
   
 
   
+  # List Email items matching the given filter.
+  #
+  # @param reqmatch [EmailListMatch, Hash, nil] match filter (any subset of Email fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Email>, Array] the matching Email items; raises TempMailError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

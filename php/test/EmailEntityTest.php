@@ -50,8 +50,7 @@ class EmailEntityTest extends TestCase
         $email_ref01_ent = $client->Email(null);
         $email_ref01_match = [];
 
-        [$email_ref01_list_result, $err] = $email_ref01_ent->list($email_ref01_match, null);
-        $this->assertNull($err);
+        $email_ref01_list_result = $email_ref01_ent->list($email_ref01_match, null);
         $this->assertIsArray($email_ref01_list_result);
 
     }

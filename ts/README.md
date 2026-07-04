@@ -9,9 +9,12 @@ The TypeScript SDK for the TempMail API — a type-safe, entity-oriented client 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/temp-mail
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/temp-mail-sdk/releases](https://github.com/voxgig-sdk/temp-mail-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TempMailSDK } from 'temp-mail'
+import { TempMailSDK } from '@voxgig-sdk/temp-mail'
 
 const client = new TempMailSDK({
-  apikey: process.env.TEMP-MAIL_APIKEY,
+  apikey: process.env.TEMP_MAIL_APIKEY,
 })
 ```
 
 ### 2. List emails
 
 ```ts
-const result = await client.Email().list()
+const result = await client.email.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TempMailSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.email.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -98,7 +101,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.email
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,8 +138,8 @@ const client = new TempMailSDK({
 Create a `.env.local` file at the project root:
 
 ```
-TEMP-MAIL_TEST_LIVE=TRUE
-TEMP-MAIL_APIKEY=<your-key>
+TEMP_MAIL_TEST_LIVE=TRUE
+TEMP_MAIL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -287,7 +290,7 @@ API path: `/create`
 
 ### Email
 
-Create an instance: `const email = client.Email()`
+Create an instance: `const email = client.email`
 
 #### Operations
 
@@ -309,13 +312,13 @@ Create an instance: `const email = client.Email()`
 #### Example: List
 
 ```ts
-const emails = await client.Email().list()
+const emails = await client.email.list()
 ```
 
 
 ### Mailbox
 
-Create an instance: `const mailbox = client.Mailbox()`
+Create an instance: `const mailbox = client.mailbox`
 
 #### Operations
 
@@ -335,7 +338,7 @@ Create an instance: `const mailbox = client.Mailbox()`
 #### Example: Create
 
 ```ts
-const mailbox = await client.Mailbox().create({
+const mailbox = await client.mailbox.create({
 })
 ```
 
@@ -397,7 +400,7 @@ temp-mail/
 Import the SDK from the package root:
 
 ```ts
-import { TempMailSDK } from 'temp-mail'
+import { TempMailSDK } from '@voxgig-sdk/temp-mail'
 ```
 
 ### Entity state
@@ -407,11 +410,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const email = client.email
+await email.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// email.data() now returns the loaded email data
+// email.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

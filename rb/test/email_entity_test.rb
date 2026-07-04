@@ -43,8 +43,7 @@ class EmailEntityTest < Minitest::Test
     email_ref01_ent = client.Email(nil)
     email_ref01_match = {}
 
-    email_ref01_list_result, err = email_ref01_ent.list(email_ref01_match, nil)
-    assert_nil err
+    email_ref01_list_result = email_ref01_ent.list(email_ref01_match, nil)
     assert email_ref01_list_result.is_a?(Array)
 
   end

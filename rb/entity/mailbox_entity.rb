@@ -45,6 +45,7 @@ class MailboxEntity
     end
   end
 
+  # @return [Mailbox, Hash] the current Mailbox data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class MailboxEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Mailbox fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class MailboxEntity
   
 
   
+  # Create a new Mailbox.
+  #
+  # @param reqdata [MailboxCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Mailbox, Hash] the created Mailbox; raises TempMailError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

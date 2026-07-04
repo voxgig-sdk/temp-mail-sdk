@@ -9,12 +9,9 @@ The Lua SDK for the TempMail API — an entity-oriented client using Lua convent
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-temp-mail
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/temp-mail-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("temp-mail_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("TEMP-MAIL_APIKEY"),
+  apikey = os.getenv("TEMP_MAIL_APIKEY"),
 })
 ```
 
 ### 2. List emails
 
 ```lua
-local result, err = client:Email():list()
+local result, err = client:email():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +90,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:TempMail():load({ id = "test01" })
+local result, err = client:email():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -126,8 +123,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-TEMP-MAIL_TEST_LIVE=TRUE
-TEMP-MAIL_APIKEY=<your-key>
+TEMP_MAIL_TEST_LIVE=TRUE
+TEMP_MAIL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -246,7 +243,7 @@ API path: `/create`
 
 ### Email
 
-Create an instance: `const email = client.Email()`
+Create an instance: `const email = client.email`
 
 #### Operations
 
@@ -268,13 +265,13 @@ Create an instance: `const email = client.Email()`
 #### Example: List
 
 ```ts
-const emails = await client.Email().list()
+const emails = await client.email.list()
 ```
 
 
 ### Mailbox
 
-Create an instance: `const mailbox = client.Mailbox()`
+Create an instance: `const mailbox = client.mailbox`
 
 #### Operations
 
@@ -294,7 +291,7 @@ Create an instance: `const mailbox = client.Mailbox()`
 #### Example: Create
 
 ```ts
-const mailbox = await client.Mailbox().create({
+const mailbox = await client.mailbox.create({
 })
 ```
 
@@ -370,11 +367,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local email = client:email()
+email:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- email:data_get() now returns the loaded email data
+-- email:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

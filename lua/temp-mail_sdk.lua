@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:email():list() / client:email():load({ id = ... })
+function TempMailSDK:email(data)
+  local EntityMod = require("entity.email_entity")
+  if data == nil then
+    if self._email == nil then
+      self._email = EntityMod.new(self, nil)
+    end
+    return self._email
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:email() instead.
 function TempMailSDK:Email(data)
   local EntityMod = require("entity.email_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:mailbox():list() / client:mailbox():load({ id = ... })
+function TempMailSDK:mailbox(data)
+  local EntityMod = require("entity.mailbox_entity")
+  if data == nil then
+    if self._mailbox == nil then
+      self._mailbox = EntityMod.new(self, nil)
+    end
+    return self._mailbox
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:mailbox() instead.
 function TempMailSDK:Mailbox(data)
   local EntityMod = require("entity.mailbox_entity")
   return EntityMod.new(self, data)

@@ -245,11 +245,17 @@ func (sdk *TempMailSDK) Direct(fetchargs map[string]any) (map[string]any, error)
 }
 
 
+// Email returns a Email entity bound to this client.
+// Idiomatic usage: client.Email(nil).List(nil, nil) or
+// client.Email(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TempMailSDK) Email(data map[string]any) TempMailEntity {
 	return NewEmailEntityFunc(sdk, data)
 }
 
 
+// Mailbox returns a Mailbox entity bound to this client.
+// Idiomatic usage: client.Mailbox(nil).List(nil, nil) or
+// client.Mailbox(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TempMailSDK) Mailbox(data map[string]any) TempMailEntity {
 	return NewMailboxEntityFunc(sdk, data)
 }

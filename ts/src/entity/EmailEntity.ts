@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Email,
+  EmailListMatch,
+} from '../TempMailTypes'
 
 // TODO: needs Entity superclass
-class EmailEntity extends TempMailEntityBase {
+class EmailEntity extends TempMailEntityBase<Email> {
 
   constructor(client: TempMailSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class EmailEntity extends TempMailEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: EmailListMatch, ctrl?: Control): Promise<Email[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class EmailEntity extends TempMailEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Email[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

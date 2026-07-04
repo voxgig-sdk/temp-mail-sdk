@@ -43,8 +43,7 @@ class MailboxEntityTest extends TestCase
         $mailbox_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.mailbox"), "mailbox_ref01"));
 
-        [$mailbox_ref01_data_result, $err] = $mailbox_ref01_ent->create($mailbox_ref01_data, null);
-        $this->assertNull($err);
+        $mailbox_ref01_data_result = $mailbox_ref01_ent->create($mailbox_ref01_data, null);
         $mailbox_ref01_data = Helpers::to_map($mailbox_ref01_data_result);
         $this->assertNotNull($mailbox_ref01_data);
 

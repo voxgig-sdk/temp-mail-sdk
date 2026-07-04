@@ -122,7 +122,7 @@ Alias for `TempMailSDK.test()`.
 ## EmailEntity
 
 ```ts
-const email = client.Email()
+const email = client.email
 ```
 
 ### Fields
@@ -143,7 +143,7 @@ const email = client.Email()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Email().list()
+const results = await client.email.list()
 ```
 
 ### Common Methods
@@ -177,7 +177,7 @@ Return a copy of the entity options.
 ## MailboxEntity
 
 ```ts
-const mailbox = client.Mailbox()
+const mailbox = client.mailbox
 ```
 
 ### Fields
@@ -196,7 +196,7 @@ const mailbox = client.Mailbox()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Mailbox().create({
+const result = await client.mailbox.create({
 })
 ```
 
