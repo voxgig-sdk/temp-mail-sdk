@@ -28,9 +28,11 @@ const client = new TempMailSDK({
   apikey: process.env.TEMP_MAIL_APIKEY,
 })
 
-// List all emails
-const emails = await client.email.list()
-console.log(emails.data)
+// List all emails (returns Email[])
+const emails = await client.Email().list()
+for (const email of emails) {
+  console.log(email)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -89,9 +91,10 @@ client = TempMailSDK({
     "apikey": os.environ.get("TEMP_MAIL_APIKEY"),
 })
 
-# List all emails
-emails = client.email.list()
-print(emails)
+# List all emails (returns a list, raises on error)
+emails = client.Email().list({})
+for email in emails:
+    print(email)
 ```
 
 ### PHP
@@ -104,8 +107,8 @@ $client = new TempMailSDK([
     "apikey" => getenv("TEMP_MAIL_APIKEY"),
 ]);
 
-// List all emails (throws on error)
-$emails = $client->email()->list();
+// List all emails (returns an array; throws on error)
+$emails = $client->Email()->list();
 print_r($emails);
 ```
 
@@ -132,8 +135,8 @@ client = TempMailSDK.new({
   "apikey" => ENV["TEMP_MAIL_APIKEY"],
 })
 
-# List all emails
-emails = client.email.list
+# List all emails (returns an Array; raises on error)
+emails = client.Email.list
 puts emails
 ```
 
@@ -147,7 +150,7 @@ local client = sdk.new({
 })
 
 -- List all emails
-local emails, err = client:email():list()
+local emails, err = client:Email():list()
 print(emails)
 ```
 
@@ -160,22 +163,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = TempMailSDK.test()
-const result = await client.email.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const email = await client.Email().load({ id: 'test01' })
+// email is a bare Email populated with mock data
+console.log(email)
 ```
 
 ### Python
 
 ```python
 client = TempMailSDK.test()
-result = client.email.load({"id": "test01"})
+email = client.Email().load({"id": "test01"})
+print(email)
 ```
 
 ### PHP
 
 ```php
-$client = TempMailSDK::test();
-$result = $client->email()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = TempMailSDK::test([
+    "entity" => ["email" => ["test01" => ["id" => "test01"]]],
+]);
+$email = $client->Email()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -190,15 +198,18 @@ result, err := client.Email(nil).Load(
 ### Ruby
 
 ```ruby
-client = TempMailSDK.test
-result = client.email.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = TempMailSDK.test({
+  "entity" => { "email" => { "test01" => { "id" => "test01" } } },
+})
+email = client.Email.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:email():load({ id = "test01" })
+local result, err = client:Email():load({ id = "test01" })
 ```
 
 ## How it works
@@ -246,6 +257,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

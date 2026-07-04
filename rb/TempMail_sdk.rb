@@ -208,26 +208,14 @@ class TempMailSDK
   end
 
 
-  # Idiomatic facade: client.email.list / client.email.load({ "id" => ... })
-  def email
-    require_relative 'entity/email_entity'
-    @email ||= EmailEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.email instead.
+  # Canonical facade: client.Email.list / client.Email.load({ "id" => ... })
   def Email(data = nil)
     require_relative 'entity/email_entity'
     EmailEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.mailbox.list / client.mailbox.load({ "id" => ... })
-  def mailbox
-    require_relative 'entity/mailbox_entity'
-    @mailbox ||= MailboxEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.mailbox instead.
+  # Canonical facade: client.Mailbox.list / client.Mailbox.load({ "id" => ... })
   def Mailbox(data = nil)
     require_relative 'entity/mailbox_entity'
     MailboxEntity.new(self, data)

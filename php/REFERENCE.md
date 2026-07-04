@@ -90,7 +90,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## EmailEntity
 
 ```php
-$email = $client->email();
+$email = $client->Email();
 ```
 
 ### Fields
@@ -111,7 +111,7 @@ $email = $client->email();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->email()->list([]);
+$results = $client->Email()->list([]);
 ```
 
 ### Common Methods
@@ -147,7 +147,7 @@ Return the entity name.
 ## MailboxEntity
 
 ```php
-$mailbox = $client->mailbox();
+$mailbox = $client->Mailbox();
 ```
 
 ### Fields
@@ -166,7 +166,7 @@ $mailbox = $client->mailbox();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->mailbox()->create([
+$result = $client->Mailbox()->create([
 ]);
 ```
 

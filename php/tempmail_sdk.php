@@ -233,10 +233,10 @@ class TempMailSDK
 
     private $_email = null;
 
-    // Idiomatic facade: $client->email()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Email() (PHP method
-    // names are case-insensitive).
-    public function email($data = null)
+    // Canonical facade: $client->Email()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->email()
+    // resolves here too.
+    public function Email($data = null)
     {
         require_once __DIR__ . '/entity/email_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class TempMailSDK
 
     private $_mailbox = null;
 
-    // Idiomatic facade: $client->mailbox()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Mailbox() (PHP method
-    // names are case-insensitive).
-    public function mailbox($data = null)
+    // Canonical facade: $client->Mailbox()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->mailbox()
+    // resolves here too.
+    public function Mailbox($data = null)
     {
         require_once __DIR__ . '/entity/mailbox_entity.php';
         if ($data === null) {

@@ -88,7 +88,7 @@ same parameters as `direct()`.
 ## EmailEntity
 
 ```lua
-local email = client:email(nil)
+local email = client:Email(nil)
 ```
 
 ### Fields
@@ -109,7 +109,7 @@ local email = client:email(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:email():list()
+local results, err = client:Email():list()
 ```
 
 ### Common Methods
@@ -145,7 +145,7 @@ Return the entity name.
 ## MailboxEntity
 
 ```lua
-local mailbox = client:mailbox(nil)
+local mailbox = client:Mailbox(nil)
 ```
 
 ### Fields
@@ -164,7 +164,7 @@ local mailbox = client:mailbox(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:mailbox():create({
+local result, err = client:Mailbox():create({
 })
 ```
 

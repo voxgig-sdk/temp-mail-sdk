@@ -30,16 +30,14 @@ client = TempMailSDK.new({
 })
 ```
 
-### 2. List emails
+### 2. List email records
 
 ```ruby
 begin
-  result = client.email.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Email records — iterate directly.
+  emails = client.Email.list
+  emails.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -87,13 +85,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = TempMailSDK.test
+client = TempMailSDK.test({
+  "entity" => { "email" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.email.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+email = client.Email.load({ "id" => "test01" })
+puts email
 ```
 
 ### Use a custom fetch function
@@ -171,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Email` | `(data) -> EmailEntity` | Create a Email entity instance. |
+| `Email` | `(data) -> EmailEntity` | Create an Email entity instance. |
 | `Mailbox` | `(data) -> MailboxEntity` | Create a Mailbox entity instance. |
 
 ### Entity interface
@@ -246,7 +248,7 @@ API path: `/create`
 
 ### Email
 
-Create an instance: `const email = client.email`
+Create an instance: `email = client.Email`
 
 #### Operations
 
@@ -267,14 +269,15 @@ Create an instance: `const email = client.email`
 
 #### Example: List
 
-```ts
-const emails = await client.email.list()
+```ruby
+# list returns an Array of Email records (raises on error).
+emails = client.Email.list
 ```
 
 
 ### Mailbox
 
-Create an instance: `const mailbox = client.mailbox`
+Create an instance: `mailbox = client.Mailbox`
 
 #### Operations
 
@@ -293,8 +296,8 @@ Create an instance: `const mailbox = client.mailbox`
 
 #### Example: Create
 
-```ts
-const mailbox = await client.mailbox.create({
+```ruby
+mailbox = client.Mailbox.create({
 })
 ```
 
@@ -370,7 +373,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-email = client.email
+email = client.Email
 email.load({ "id" => "example_id" })
 
 # email.data_get now returns the loaded email data

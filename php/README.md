@@ -31,18 +31,16 @@ $client = new TempMailSDK([
 ]);
 ```
 
-### 2. List emails
+### 2. List email records
 
 ```php
 try {
-    $result = $client->email()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Email records — iterate directly.
+    $emails = $client->Email()->list();
+    foreach ($emails as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -88,13 +86,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = TempMailSDK::test();
+$client = TempMailSDK::test([
+    "entity" => ["email" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->email()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$email = $client->Email()->load(["id" => "test01"]);
+print_r($email);
 ```
 
 ### Use a custom fetch function
@@ -175,7 +177,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Email` | `($data): EmailEntity` | Create a Email entity instance. |
+| `Email` | `($data): EmailEntity` | Create an Email entity instance. |
 | `Mailbox` | `($data): MailboxEntity` | Create a Mailbox entity instance. |
 
 ### Entity interface
@@ -251,7 +253,7 @@ API path: `/create`
 
 ### Email
 
-Create an instance: `const email = client.email`
+Create an instance: `$email = $client->Email();`
 
 #### Operations
 
@@ -272,14 +274,15 @@ Create an instance: `const email = client.email`
 
 #### Example: List
 
-```ts
-const emails = await client.email.list()
+```php
+// list() returns an array of Email records (throws on error).
+$emails = $client->Email()->list();
 ```
 
 
 ### Mailbox
 
-Create an instance: `const mailbox = client.mailbox`
+Create an instance: `$mailbox = $client->Mailbox();`
 
 #### Operations
 
@@ -298,9 +301,9 @@ Create an instance: `const mailbox = client.mailbox`
 
 #### Example: Create
 
-```ts
-const mailbox = await client.mailbox.create({
-})
+```php
+$mailbox = $client->Mailbox()->create([
+]);
 ```
 
 
@@ -375,7 +378,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$email = $client->email();
+$email = $client->Email();
 $email->load(["id" => "example_id"]);
 
 // $email->dataGet() now returns the loaded email data

@@ -34,14 +34,16 @@ client = TempMailSDK({
 })
 ```
 
-### 2. List emails
+### 2. List email records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.email.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    emails = client.Email().list({})
+    for email in emails:
+        print(email)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -89,8 +91,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TempMailSDK.test()
 
-result = client.email.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+email = client.Email().load({"id": "test01"})
+# email contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -168,7 +171,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Email` | `(data) -> EmailEntity` | Create a Email entity instance. |
+| `Email` | `(data) -> EmailEntity` | Create an Email entity instance. |
 | `Mailbox` | `(data) -> MailboxEntity` | Create a Mailbox entity instance. |
 
 ### Entity interface
@@ -244,7 +247,7 @@ API path: `/create`
 
 ### Email
 
-Create an instance: `const email = client.email`
+Create an instance: `email = client.Email()`
 
 #### Operations
 
@@ -265,14 +268,14 @@ Create an instance: `const email = client.email`
 
 #### Example: List
 
-```ts
-const emails = await client.email.list()
+```python
+emails = client.Email().list({})
 ```
 
 
 ### Mailbox
 
-Create an instance: `const mailbox = client.mailbox`
+Create an instance: `mailbox = client.Mailbox()`
 
 #### Operations
 
@@ -291,8 +294,8 @@ Create an instance: `const mailbox = client.mailbox`
 
 #### Example: Create
 
-```ts
-const mailbox = await client.mailbox.create({
+```python
+mailbox = client.Mailbox().create({
 })
 ```
 
@@ -367,7 +370,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-email = client.email
+email = client.Email()
 email.load({"id": "example_id"})
 
 # email.data_get() now returns the loaded email data

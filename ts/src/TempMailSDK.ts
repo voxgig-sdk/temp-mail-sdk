@@ -205,28 +205,14 @@ class TempMailSDK {
 
 
 
-  _email?: EmailEntity
-
-  // Idiomatic facade: `client.email.list()` / `client.email.load({ id })`.
-  get email(): EmailEntity {
-    return (this._email ??= new EmailEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.email` instead. */
+  // Entity access: `client.Email().list()` / `client.Email().load({ id })`.
   Email(data?: any) {
     const self = this
     return new EmailEntity(self,data)
   }
 
 
-  _mailbox?: MailboxEntity
-
-  // Idiomatic facade: `client.mailbox.list()` / `client.mailbox.load({ id })`.
-  get mailbox(): MailboxEntity {
-    return (this._mailbox ??= new MailboxEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.mailbox` instead. */
+  // Entity access: `client.Mailbox().list()` / `client.Mailbox().load({ id })`.
   Mailbox(data?: any) {
     const self = this
     return new MailboxEntity(self,data)

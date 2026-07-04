@@ -220,41 +220,21 @@ class TempMailSDK:
         }
 
 
-    @property
-    def email(self):
-        """Idiomatic facade: client.email.list() / client.email.load({"id": ...})."""
-        from entity.email_entity import EmailEntity
-        cached = getattr(self, "_email", None)
-        if cached is None:
-            cached = EmailEntity(self, None)
-            self._email = cached
-        return cached
-
-    def Email(self, data=None):
-        # Deprecated: use client.email instead.
+    def Email(self, data=None) -> "EmailEntity":
+        """Entity factory: client.Email().list({}) / client.Email().load({"id": ...})."""
         from entity.email_entity import EmailEntity
         return EmailEntity(self, data)
 
 
-    @property
-    def mailbox(self):
-        """Idiomatic facade: client.mailbox.list() / client.mailbox.load({"id": ...})."""
-        from entity.mailbox_entity import MailboxEntity
-        cached = getattr(self, "_mailbox", None)
-        if cached is None:
-            cached = MailboxEntity(self, None)
-            self._mailbox = cached
-        return cached
-
-    def Mailbox(self, data=None):
-        # Deprecated: use client.mailbox instead.
+    def Mailbox(self, data=None) -> "MailboxEntity":
+        """Entity factory: client.Mailbox().list({}) / client.Mailbox().load({"id": ...})."""
         from entity.mailbox_entity import MailboxEntity
         return MailboxEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "TempMailSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class TempMailSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.email_entity import EmailEntity
+    from entity.mailbox_entity import MailboxEntity

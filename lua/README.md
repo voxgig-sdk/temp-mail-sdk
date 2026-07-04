@@ -33,17 +33,17 @@ local client = sdk.new({
 })
 ```
 
-### 2. List emails
+### 2. List email records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:email():list()
+local emails, err = client:Email():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(emails) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -90,8 +90,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:email():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Email():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -171,7 +171,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Email` | `(data) -> EmailEntity` | Create a Email entity instance. |
+| `Email` | `(data) -> EmailEntity` | Create an Email entity instance. |
 | `Mailbox` | `(data) -> MailboxEntity` | Create a Mailbox entity instance. |
 
 ### Entity interface
@@ -194,17 +194,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local email, err = client:Email():load({ id = "example_id" })
+    if err then error(err) end
+    -- email is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -243,7 +248,7 @@ API path: `/create`
 
 ### Email
 
-Create an instance: `const email = client.email`
+Create an instance: `local email = client:Email(nil)`
 
 #### Operations
 
@@ -264,14 +269,14 @@ Create an instance: `const email = client.email`
 
 #### Example: List
 
-```ts
-const emails = await client.email.list()
+```lua
+local emails, err = client:Email():list()
 ```
 
 
 ### Mailbox
 
-Create an instance: `const mailbox = client.mailbox`
+Create an instance: `local mailbox = client:Mailbox(nil)`
 
 #### Operations
 
@@ -290,8 +295,8 @@ Create an instance: `const mailbox = client.mailbox`
 
 #### Example: Create
 
-```ts
-const mailbox = await client.mailbox.create({
+```lua
+local mailbox, err = client:Mailbox():create({
 })
 ```
 
@@ -367,7 +372,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local email = client:email()
+local email = client:Email()
 email:load({ id = "example_id" })
 
 -- email:data_get() now returns the loaded email data

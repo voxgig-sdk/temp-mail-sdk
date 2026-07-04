@@ -85,7 +85,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## EmailEntity
 
 ```python
-email = client.email
+email = client.Email()
 ```
 
 ### Fields
@@ -106,7 +106,9 @@ email = client.email
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.email.list({})
+results = client.Email().list({})
+for email in results:
+    print(email)
 ```
 
 ### Common Methods
@@ -141,7 +143,7 @@ Return the entity name.
 ## MailboxEntity
 
 ```python
-mailbox = client.mailbox
+mailbox = client.Mailbox()
 ```
 
 ### Fields
@@ -160,7 +162,7 @@ mailbox = client.mailbox
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.mailbox.create({
+result = client.Mailbox().create({
 })
 ```
 

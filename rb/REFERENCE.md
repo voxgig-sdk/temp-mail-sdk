@@ -91,7 +91,7 @@ same parameters as `direct()`. Raises on error.
 ## EmailEntity
 
 ```ruby
-email = client.email
+email = client.Email
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ email = client.email
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.email.list(nil)
+results = client.Email.list(nil)
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## MailboxEntity
 
 ```ruby
-mailbox = client.mailbox
+mailbox = client.Mailbox
 ```
 
 ### Fields
@@ -167,7 +167,7 @@ mailbox = client.mailbox
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.mailbox.create({
+result = client.Mailbox.create({
 })
 ```
 
