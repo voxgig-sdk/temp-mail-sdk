@@ -8,7 +8,7 @@ Complete API reference for the TempMail Python SDK.
 ### Constructor
 
 ```python
-from temp-mail_sdk import TempMailSDK
+from tempmail_sdk import TempMailSDK
 
 client = TempMailSDK(options)
 ```
@@ -92,21 +92,21 @@ email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | Yes |  |
-| `body` | ``$STRING`` | Yes |  |
-| `from` | ``$STRING`` | Yes |  |
-| `id` | ``$STRING`` | Yes |  |
-| `received_at` | ``$INTEGER`` | No |  |
-| `subject` | ``$STRING`` | Yes |  |
+| `attachment` | `list` | Yes |  |
+| `body` | `str` | Yes |  |
+| `from` | `str` | Yes |  |
+| `id` | `str` | Yes |  |
+| `received_at` | `int` | No |  |
+| `subject` | `str` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Email().list({})
+results = client.Email().list()
 for email in results:
     print(email)
 ```
@@ -150,10 +150,10 @@ mailbox = client.Mailbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `domain` | ``$STRING`` | No |  |
-| `msg` | ``$STRING`` | No |  |
+| `code` | `str` | No |  |
+| `data` | `dict` | No |  |
+| `domain` | `str` | No |  |
+| `msg` | `str` | No |  |
 
 ### Operations
 

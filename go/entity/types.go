@@ -18,8 +18,7 @@ type Email struct {
 	Subject string `json:"subject"`
 }
 
-// EmailListMatch mirrors the email fields as an all-optional match
-// filter (Go analog of Partial<Email>).
+// EmailListMatch is the typed request payload for Email.ListTyped.
 type EmailListMatch struct {
 	Attachment *[]any `json:"attachment,omitempty"`
 	Body *string `json:"body,omitempty"`
@@ -37,8 +36,7 @@ type Mailbox struct {
 	Msg *string `json:"msg,omitempty"`
 }
 
-// MailboxCreateData mirrors the mailbox fields as an all-optional match
-// filter (Go analog of Partial<Mailbox>).
+// MailboxCreateData is the typed request payload for Mailbox.CreateTyped.
 type MailboxCreateData struct {
 	Code *string `json:"code,omitempty"`
 	Data *map[string]any `json:"data,omitempty"`

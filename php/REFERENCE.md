@@ -8,7 +8,7 @@ Complete API reference for the TempMail PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/temp-mail_sdk.php';
+require_once __DIR__ . '/tempmail_sdk.php';
 
 $client = new TempMailSDK($options);
 ```
@@ -50,11 +50,11 @@ Create a new `EmailEntity` instance. Pass `null` for no initial data.
 
 Create a new `MailboxEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): TempMailUtility`
 
 Return a copy of the SDK utility object.
 
@@ -97,38 +97,38 @@ $email = $client->Email();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | Yes |  |
-| `body` | ``$STRING`` | Yes |  |
-| `from` | ``$STRING`` | Yes |  |
-| `id` | ``$STRING`` | Yes |  |
-| `received_at` | ``$INTEGER`` | No |  |
-| `subject` | ``$STRING`` | Yes |  |
+| `attachment` | `array` | Yes |  |
+| `body` | `string` | Yes |  |
+| `from` | `string` | Yes |  |
+| `id` | `string` | Yes |  |
+| `received_at` | `int` | No |  |
+| `subject` | `string` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Email()->list([]);
+$results = $client->Email()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -137,7 +137,7 @@ Set the entity match criteria.
 Create a new `EmailEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -154,10 +154,10 @@ $mailbox = $client->Mailbox();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `domain` | ``$STRING`` | No |  |
-| `msg` | ``$STRING`` | No |  |
+| `code` | `string` | No |  |
+| `data` | `array` | No |  |
+| `domain` | `string` | No |  |
+| `msg` | `string` | No |  |
 
 ### Operations
 
@@ -172,19 +172,19 @@ $result = $client->Mailbox()->create([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -193,7 +193,7 @@ Set the entity match criteria.
 Create a new `MailboxEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

@@ -8,7 +8,7 @@ Complete API reference for the TempMail Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'temp-mail_sdk'
+require_relative 'TempMail_sdk'
 
 client = TempMailSDK.new(options)
 ```
@@ -98,21 +98,21 @@ email = client.Email
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | Yes |  |
-| `body` | ``$STRING`` | Yes |  |
-| `from` | ``$STRING`` | Yes |  |
-| `id` | ``$STRING`` | Yes |  |
-| `received_at` | ``$INTEGER`` | No |  |
-| `subject` | ``$STRING`` | Yes |  |
+| `attachment` | `Array` | Yes |  |
+| `body` | `String` | Yes |  |
+| `from` | `String` | Yes |  |
+| `id` | `String` | Yes |  |
+| `received_at` | `Integer` | No |  |
+| `subject` | `String` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Email.list(nil)
+results = client.Email.list
 ```
 
 ### Common Methods
@@ -155,10 +155,10 @@ mailbox = client.Mailbox
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `domain` | ``$STRING`` | No |  |
-| `msg` | ``$STRING`` | No |  |
+| `code` | `String` | No |  |
+| `data` | `Hash` | No |  |
+| `domain` | `String` | No |  |
+| `msg` | `String` | No |  |
 
 ### Operations
 

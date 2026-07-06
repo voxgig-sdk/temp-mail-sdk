@@ -129,12 +129,12 @@ const email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | Yes |  |
-| `body` | ``$STRING`` | Yes |  |
-| `from` | ``$STRING`` | Yes |  |
-| `id` | ``$STRING`` | Yes |  |
-| `received_at` | ``$INTEGER`` | No |  |
-| `subject` | ``$STRING`` | Yes |  |
+| `attachment` | `any[]` | Yes |  |
+| `body` | `string` | Yes |  |
+| `from` | `string` | Yes |  |
+| `id` | `string` | Yes |  |
+| `received_at` | `number` | No |  |
+| `subject` | `string` | Yes |  |
 
 ### Operations
 
@@ -184,10 +184,10 @@ const mailbox = client.Mailbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `domain` | ``$STRING`` | No |  |
-| `msg` | ``$STRING`` | No |  |
+| `code` | `string` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `domain` | `string` | No |  |
+| `msg` | `string` | No |  |
 
 ### Operations
 

@@ -15,6 +15,12 @@
 ---@field subject string
 
 ---@class EmailListMatch
+---@field attachment? table
+---@field body? string
+---@field from? string
+---@field id? string
+---@field received_at? number
+---@field subject? string
 
 ---@class Mailbox
 ---@field code? string
@@ -23,6 +29,10 @@
 ---@field msg? string
 
 ---@class MailboxCreateData
+---@field code? string
+---@field data? table
+---@field domain? string
+---@field msg? string
 
 local M = {}
 

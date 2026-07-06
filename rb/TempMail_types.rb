@@ -37,7 +37,7 @@ Email = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Email#list (any subset of Email fields).
+# Request payload for Email#list.
 #
 # @!attribute [rw] attachment
 #   @return [Array, nil]
@@ -87,7 +87,7 @@ Mailbox = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Mailbox#create (any subset of Mailbox fields).
+# Request payload for Mailbox#create.
 #
 # @!attribute [rw] code
 #   @return [String, nil]

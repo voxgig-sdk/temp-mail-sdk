@@ -221,13 +221,13 @@ class TempMailSDK:
 
 
     def Email(self, data=None) -> "EmailEntity":
-        """Entity factory: client.Email().list({}) / client.Email().load({"id": ...})."""
+        """Entity factory: client.Email().list() / client.Email().load({"id": ...})."""
         from entity.email_entity import EmailEntity
         return EmailEntity(self, data)
 
 
     def Mailbox(self, data=None) -> "MailboxEntity":
-        """Entity factory: client.Mailbox().list({}) / client.Mailbox().load({"id": ...})."""
+        """Entity factory: client.Mailbox().list() / client.Mailbox().load({"id": ...})."""
         from entity.mailbox_entity import MailboxEntity
         return MailboxEntity(self, data)
 

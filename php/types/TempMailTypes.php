@@ -23,7 +23,7 @@ class Email
     public string $subject;
 }
 
-/** Match filter for Email#list (any subset of Email fields). */
+/** Request payload for Email#list. */
 class EmailListMatch
 {
     public ?array $attachment = null;
@@ -43,7 +43,7 @@ class Mailbox
     public ?string $msg = null;
 }
 
-/** Match filter for Mailbox#create (any subset of Mailbox fields). */
+/** Request payload for Mailbox#create. */
 class MailboxCreateData
 {
     public ?string $code = null;

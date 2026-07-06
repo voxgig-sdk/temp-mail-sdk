@@ -14,7 +14,14 @@ export interface Email {
   subject: string
 }
 
-export type EmailListMatch = Partial<Email>
+export interface EmailListMatch {
+  attachment?: any[]
+  body?: string
+  from?: string
+  id?: string
+  received_at?: number
+  subject?: string
+}
 
 export interface Mailbox {
   code?: string
@@ -23,5 +30,10 @@ export interface Mailbox {
   msg?: string
 }
 
-export type MailboxCreateData = Partial<Mailbox>
+export interface MailboxCreateData {
+  code?: string
+  data?: Record<string, any>
+  domain?: string
+  msg?: string
+}
 
