@@ -353,6 +353,10 @@ Create an instance: `mailbox := client.Mailbox(nil)`
 ```go
 result, err := client.Mailbox(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

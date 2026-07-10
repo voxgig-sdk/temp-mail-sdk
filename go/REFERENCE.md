@@ -96,6 +96,7 @@ same parameters as `Direct()`.
 
 ```go
 email := client.Email(nil)
+fmt.Println(email.GetName()) // "email"
 ```
 
 ### Fields
@@ -117,6 +118,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Email(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -147,6 +152,7 @@ Return the entity name.
 
 ```go
 mailbox := client.Mailbox(nil)
+fmt.Println(mailbox.GetName()) // "mailbox"
 ```
 
 ### Fields
@@ -167,6 +173,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.Mailbox(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

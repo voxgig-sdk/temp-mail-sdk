@@ -16,7 +16,7 @@ def make_config():
         "options": {
             "base": "https://hub.juheapi.com/temp-mail/v1",
             "auth": {
-                "prefix": "Bearer",
+                "prefix": "",
             },
             "headers": {
         "content-type": "application/json",

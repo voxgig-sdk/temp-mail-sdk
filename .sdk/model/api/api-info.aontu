@@ -9,16 +9,23 @@ main: {
         url: "https://www.juheapi.com/api-catalog/temp-mail"
       }
       description: "The Temp Mail API allows developers to programmatically create disposable email addresses for enhanced privacy and testing. Users can send and receive messages without revealing their real email addresses, making it an ideal solution for protecting personal information and automating processes."
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: ""
+        scheme: "ApiKeyAuth"
+        type: "apiKey"
+      }
       servers: [
         {
           description: "Production server"
           url: "https://hub.juheapi.com/temp-mail/v1"
         }
       ]
+      summary: "The Temp Mail API allows developers to programmatically create disposable email addresses for enhanced privacy and testing."
       termsOfService: "https://www.juheapi.com/terms-of-service"
       title: "Temp Mail API"
       version: "1.0.0"
+      website: "https://hub.juheapi.com"
     }
   }
-}
-
