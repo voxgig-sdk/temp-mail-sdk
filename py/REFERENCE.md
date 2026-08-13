@@ -92,7 +92,7 @@ email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `list` | Yes |  |
+| `attachments` | `list` | Yes |  |
 | `body` | `str` | Yes |  |
 | `from` | `str` | Yes |  |
 | `id` | `str` | Yes |  |
@@ -150,10 +150,10 @@ mailbox = client.Mailbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `str` | No |  |
-| `data` | `dict` | No |  |
 | `domain` | `str` | No |  |
-| `msg` | `str` | No |  |
+| `email` | `str` | No |  |
+| `expires_at` | `int` | No |  |
+| `id` | `str` | No |  |
 
 ### Operations
 

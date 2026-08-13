@@ -225,9 +225,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local email, err = client:Email():load()
+    local email, err = client:Email():list()
     if err then error(err) end
-    -- email is the loaded record
+    -- email is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -238,7 +238,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `from` |  |
 | `id` |  |
@@ -253,10 +253,10 @@ API path: `/get-emails`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `data` |  |
 | `domain` |  |
-| `msg` |  |
+| `email` |  |
+| `expires_at` |  |
+| `id` |  |
 
 Operations: Create.
 
@@ -281,7 +281,7 @@ Create an instance: `local email = client:Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `table` |  |
+| `attachments` | `table` |  |
 | `body` | `string` |  |
 | `from` | `string` |  |
 | `id` | `string` |  |
@@ -309,10 +309,10 @@ Create an instance: `local mailbox = client:Mailbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `string` |  |
-| `data` | `table` |  |
 | `domain` | `string` |  |
-| `msg` | `string` |  |
+| `email` | `string` |  |
+| `expires_at` | `number` |  |
+| `id` | `string` |  |
 
 #### Example: Create
 

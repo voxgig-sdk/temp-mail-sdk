@@ -268,7 +268,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"attachment"` |  |
+| `"attachments"` |  |
 | `"body"` |  |
 | `"from"` |  |
 | `"id"` |  |
@@ -283,10 +283,10 @@ API path: `/get-emails`
 
 | Field | Description |
 | --- | --- |
-| `"code"` |  |
-| `"data"` |  |
 | `"domain"` |  |
-| `"msg"` |  |
+| `"email"` |  |
+| `"expires_at"` |  |
+| `"id"` |  |
 
 Operations: Create.
 
@@ -311,7 +311,7 @@ Create an instance: `email := client.Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `[]any` |  |
+| `attachments` | `[]any` |  |
 | `body` | `string` |  |
 | `from` | `string` |  |
 | `id` | `string` |  |
@@ -343,10 +343,10 @@ Create an instance: `mailbox := client.Mailbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `string` |  |
-| `data` | `map[string]any` |  |
 | `domain` | `string` |  |
-| `msg` | `string` |  |
+| `email` | `string` |  |
+| `expires_at` | `int` |  |
+| `id` | `string` |  |
 
 #### Example: Create
 

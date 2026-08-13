@@ -61,16 +61,16 @@ function email_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["TEMPMAIL_TEST_EMAIL_ENTID"] = {},
-    ["TEMPMAIL_TEST_LIVE"] = "FALSE",
-    ["TEMPMAIL_APIKEY"] = "NONE",
+    ["TEMP_MAIL_TEST_EMAIL_ENTID"] = {},
+    ["TEMP_MAIL_TEST_LIVE"] = "FALSE",
+    ["TEMP_MAIL_APIKEY"] = "NONE",
   })
 
-  local live = env["TEMPMAIL_TEST_LIVE"] == "TRUE"
+  local live = env["TEMP_MAIL_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["TEMPMAIL_APIKEY"],
+      apikey = env["TEMP_MAIL_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

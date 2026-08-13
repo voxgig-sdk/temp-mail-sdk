@@ -29,7 +29,7 @@ describe("MailboxEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set TEMPMAIL_TEST_MAILBOX_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set TEMP_MAIL_TEST_MAILBOX_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -41,8 +41,9 @@ describe("MailboxEntity", function()
 
     local mailbox_ref01_data_result, err = mailbox_ref01_ent:create(mailbox_ref01_data, nil)
     assert.is_nil(err)
-    mailbox_ref01_data = helpers.to_map(mailbox_ref01_data_result)
+    mailbox_ref01_data = helpers.to_map(type(mailbox_ref01_data_result) == 'table' and mailbox_ref01_data_result.data_get and mailbox_ref01_data_result:data_get() or mailbox_ref01_data_result)
     assert.is_not_nil(mailbox_ref01_data)
+    assert.is_not_nil(mailbox_ref01_data["id"])
 
   end)
 end)
@@ -79,39 +80,39 @@ function mailbox_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("TEMPMAIL_TEST_MAILBOX_ENTID")
+  local entid_env_raw = os.getenv("TEMP_MAIL_TEST_MAILBOX_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["TEMPMAIL_TEST_MAILBOX_ENTID"] = idmap,
-    ["TEMPMAIL_TEST_LIVE"] = "FALSE",
-    ["TEMPMAIL_TEST_EXPLAIN"] = "FALSE",
-    ["TEMPMAIL_APIKEY"] = "NONE",
+    ["TEMP_MAIL_TEST_MAILBOX_ENTID"] = idmap,
+    ["TEMP_MAIL_TEST_LIVE"] = "FALSE",
+    ["TEMP_MAIL_TEST_EXPLAIN"] = "FALSE",
+    ["TEMP_MAIL_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["TEMPMAIL_TEST_MAILBOX_ENTID"])
+    env["TEMP_MAIL_TEST_MAILBOX_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["TEMPMAIL_TEST_LIVE"] == "TRUE" then
+  if env["TEMP_MAIL_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["TEMPMAIL_APIKEY"],
+        apikey = env["TEMP_MAIL_APIKEY"],
       },
       extra or {},
     })
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["TEMPMAIL_TEST_LIVE"] == "TRUE"
+  local live = env["TEMP_MAIL_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["TEMPMAIL_TEST_EXPLAIN"] == "TRUE",
+    explain = env["TEMP_MAIL_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

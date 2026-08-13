@@ -7,7 +7,7 @@
 -- edit by hand.
 
 ---@class Email
----@field attachment table
+---@field attachments table
 ---@field body string
 ---@field from string
 ---@field id string
@@ -15,7 +15,7 @@
 ---@field subject string
 
 ---@class EmailListMatch
----@field attachment? table
+---@field attachments? table
 ---@field body? string
 ---@field from? string
 ---@field id? string
@@ -23,16 +23,16 @@
 ---@field subject? string
 
 ---@class Mailbox
----@field code? string
----@field data? table
 ---@field domain? string
----@field msg? string
+---@field email? string
+---@field expires_at? number
+---@field id? string
 
 ---@class MailboxCreateData
----@field code? string
----@field data? table
 ---@field domain? string
----@field msg? string
+---@field email? string
+---@field expires_at? number
+---@field id? string
 
 local M = {}
 

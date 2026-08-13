@@ -6,26 +6,31 @@ main: kit: entity: mailbox: {
 
   fields: [
     {
-      name: "code"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "domain"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "msg"
+      name: "email"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "expires_at"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
       req: false
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "mailbox"
   op: {
@@ -40,7 +45,7 @@ main: kit: entity: mailbox: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

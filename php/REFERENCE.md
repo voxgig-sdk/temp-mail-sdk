@@ -97,7 +97,7 @@ $email = $client->Email();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `array` | Yes |  |
+| `attachments` | `array` | Yes |  |
 | `body` | `string` | Yes |  |
 | `from` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -154,10 +154,10 @@ $mailbox = $client->Mailbox();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `string` | No |  |
-| `data` | `array` | No |  |
 | `domain` | `string` | No |  |
-| `msg` | `string` | No |  |
+| `email` | `string` | No |  |
+| `expires_at` | `int` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 

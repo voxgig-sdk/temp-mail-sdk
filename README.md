@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = TempMailSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = TempMailSDK.test({
+  entity: {
+    email: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const emails = await client.Email().list()
-// emails is an array of bare Email records populated with mock data
+// emails is an array of Email entities, populated with mock data
+// — call emails[0].data() for the record itself
 console.log(emails)
 ```
 
@@ -112,7 +121,7 @@ const client = new TempMailSDK({
   apikey: process.env.TEMP_MAIL_APIKEY,
 })
 
-// List all emails (returns Email[])
+// List all emails (returns EmailEntity[] — .data() for the record)
 const emails = await client.Email().list()
 for (const email of emails) {
   console.log(email)
@@ -357,6 +366,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.juheapi.com/api-catalog/temp-mail](https://www.juheapi.com/api-catalog/temp-mail)
 

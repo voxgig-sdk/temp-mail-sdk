@@ -15,7 +15,7 @@ declare(strict_types=1);
 /** Email entity data model. */
 class Email
 {
-    public array $attachment;
+    public array $attachments;
     public string $body;
     public string $from;
     public string $id;
@@ -26,7 +26,7 @@ class Email
 /** Request payload for Email#list. */
 class EmailListMatch
 {
-    public ?array $attachment = null;
+    public ?array $attachments = null;
     public ?string $body = null;
     public ?string $from = null;
     public ?string $id = null;
@@ -37,18 +37,18 @@ class EmailListMatch
 /** Mailbox entity data model. */
 class Mailbox
 {
-    public ?string $code = null;
-    public ?array $data = null;
     public ?string $domain = null;
-    public ?string $msg = null;
+    public ?string $email = null;
+    public ?int $expires_at = null;
+    public ?string $id = null;
 }
 
 /** Request payload for Mailbox#create. */
 class MailboxCreateData
 {
-    public ?string $code = null;
-    public ?array $data = null;
     public ?string $domain = null;
-    public ?string $msg = null;
+    public ?string $email = null;
+    public ?int $expires_at = null;
+    public ?string $id = null;
 }
 

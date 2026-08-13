@@ -23,8 +23,8 @@ module TempMailTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("TEMPMAIL_TEST_LIVE")
-    override = getenv("TEMPMAIL_TEST_OVERRIDE")
+    live = getenv("TEMP_MAIL_TEST_LIVE")
+    override = getenv("TEMP_MAIL_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module TempMailTestRunner
       end
     end
 
-    explain = getenv("TEMPMAIL_TEST_EXPLAIN")
-    m["TEMPMAIL_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("TEMP_MAIL_TEST_EXPLAIN")
+    m["TEMP_MAIL_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

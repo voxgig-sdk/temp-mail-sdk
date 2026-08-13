@@ -8,12 +8,14 @@ guide: {
   entity: email: {
     path: "/get-emails": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: mailbox: {
     path: "/create": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 

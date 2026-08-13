@@ -6,7 +6,7 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Email {
-  attachment: any[]
+  attachments: any[]
   body: string
   from: string
   id: string
@@ -15,7 +15,7 @@ export interface Email {
 }
 
 export interface EmailListMatch {
-  attachment?: any[]
+  attachments?: any[]
   body?: string
   from?: string
   id?: string
@@ -24,16 +24,16 @@ export interface EmailListMatch {
 }
 
 export interface Mailbox {
-  code?: string
-  data?: Record<string, any>
   domain?: string
-  msg?: string
+  email?: string
+  expires_at?: number
+  id?: string
 }
 
 export interface MailboxCreateData {
-  code?: string
-  data?: Record<string, any>
   domain?: string
-  msg?: string
+  email?: string
+  expires_at?: number
+  id?: string
 }
 

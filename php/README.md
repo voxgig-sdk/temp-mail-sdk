@@ -40,7 +40,7 @@ try {
     // list() returns an array of Email records — iterate directly.
     $emails = $client->Email()->list();
     foreach ($emails as $item) {
-        echo $item["id"] . " " . $item["attachment"] . "\n";
+        echo $item["id"] . " " . $item["attachments"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -127,7 +127,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = TempMailSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $email = $client->Email()->list();
 print_r($email);
 ```
@@ -230,7 +231,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -252,7 +253,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `from` |  |
 | `id` |  |
@@ -267,10 +268,10 @@ API path: `/get-emails`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `data` |  |
 | `domain` |  |
-| `msg` |  |
+| `email` |  |
+| `expires_at` |  |
+| `id` |  |
 
 Operations: Create.
 
@@ -295,7 +296,7 @@ Create an instance: `$email = $client->Email();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `array` |  |
+| `attachments` | `array` |  |
 | `body` | `string` |  |
 | `from` | `string` |  |
 | `id` | `string` |  |
@@ -324,10 +325,10 @@ Create an instance: `$mailbox = $client->Mailbox();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `string` |  |
-| `data` | `array` |  |
 | `domain` | `string` |  |
-| `msg` | `string` |  |
+| `email` | `string` |  |
+| `expires_at` | `int` |  |
+| `id` | `string` |  |
 
 #### Example: Create
 

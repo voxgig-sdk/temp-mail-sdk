@@ -95,7 +95,7 @@ local email = client:Email(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `table` | Yes |  |
+| `attachments` | `table` | Yes |  |
 | `body` | `string` | Yes |  |
 | `from` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -152,10 +152,10 @@ local mailbox = client:Mailbox(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `string` | No |  |
-| `data` | `table` | No |  |
 | `domain` | `string` | No |  |
-| `msg` | `string` | No |  |
+| `email` | `string` | No |  |
+| `expires_at` | `number` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 

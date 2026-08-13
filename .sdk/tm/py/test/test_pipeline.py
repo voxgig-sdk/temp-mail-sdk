@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import TempMailSDK
-from core.error import TempMailError
-from core.result import TempMailResult
-from core.response import TempMailResponse
-from core.spec import TempMailSpec
-from feature.base_feature import TempMailBaseFeature
+from projectname_sdk.core.error import TempMailError
+from projectname_sdk.core.result import TempMailResult
+from projectname_sdk.core.response import TempMailResponse
+from projectname_sdk.core.spec import TempMailSpec
+from projectname_sdk.feature.base_feature import TempMailBaseFeature
 
 
 def _client():

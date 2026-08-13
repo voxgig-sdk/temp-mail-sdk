@@ -103,7 +103,7 @@ fmt.Println(email.GetName()) // "email"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `[]any` | Yes |  |
+| `attachments` | `[]any` | Yes |  |
 | `body` | `string` | Yes |  |
 | `from` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -159,10 +159,10 @@ fmt.Println(mailbox.GetName()) // "mailbox"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `string` | No |  |
-| `data` | `map[string]any` | No |  |
 | `domain` | `string` | No |  |
-| `msg` | `string` | No |  |
+| `email` | `string` | No |  |
+| `expires_at` | `int` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 

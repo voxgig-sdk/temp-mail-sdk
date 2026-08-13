@@ -26,8 +26,8 @@ import {
 describe('EmailEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when TEMPMAIL_TEST_LIVE=TRUE.
-  afterEach(liveDelay('TEMPMAIL_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when TEMP_MAIL_TEST_LIVE=TRUE.
+  afterEach(liveDelay('TEMP_MAIL_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = TempMailSDK.test()
@@ -63,7 +63,7 @@ describe('EmailEntity', async () => {
     const email_ref01_ent = client.Email()
     const email_ref01_match: any = {}
 
-    const email_ref01_list = await email_ref01_ent.list(email_ref01_match)
+    const email_ref01_list = (await email_ref01_ent.list(email_ref01_match)).map((e: any) => e.data())
 
 
   })

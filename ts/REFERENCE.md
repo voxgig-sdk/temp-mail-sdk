@@ -129,7 +129,7 @@ const email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `any[]` | Yes |  |
+| `attachments` | `any[]` | Yes |  |
 | `body` | `string` | Yes |  |
 | `from` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -184,10 +184,10 @@ const mailbox = client.Mailbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `string` | No |  |
-| `data` | `Record<string, any>` | No |  |
 | `domain` | `string` | No |  |
-| `msg` | `string` | No |  |
+| `email` | `string` | No |  |
+| `expires_at` | `number` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 

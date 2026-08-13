@@ -98,7 +98,7 @@ email = client.Email
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `Array` | Yes |  |
+| `attachments` | `Array` | Yes |  |
 | `body` | `String` | Yes |  |
 | `from` | `String` | Yes |  |
 | `id` | `String` | Yes |  |
@@ -155,10 +155,10 @@ mailbox = client.Mailbox
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `String` | No |  |
-| `data` | `Hash` | No |  |
 | `domain` | `String` | No |  |
-| `msg` | `String` | No |  |
+| `email` | `String` | No |  |
+| `expires_at` | `Integer` | No |  |
+| `id` | `String` | No |  |
 
 ### Operations
 

@@ -26,8 +26,8 @@ import {
 describe('MailboxEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when TEMPMAIL_TEST_LIVE=TRUE.
-  afterEach(liveDelay('TEMPMAIL_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when TEMP_MAIL_TEST_LIVE=TRUE.
+  afterEach(liveDelay('TEMP_MAIL_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = TempMailSDK.test()
@@ -62,8 +62,8 @@ describe('MailboxEntity', async () => {
     const mailbox_ref01_ent = client.Mailbox()
     let mailbox_ref01_data = setup.data.new.mailbox['mailbox_ref01']
 
-    mailbox_ref01_data = await mailbox_ref01_ent.create(mailbox_ref01_data)
-    assert(null != mailbox_ref01_data)
+    mailbox_ref01_data = (await mailbox_ref01_ent.create(mailbox_ref01_data)).data()
+    assert(null != mailbox_ref01_data.id)
 
 
   })

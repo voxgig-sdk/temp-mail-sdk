@@ -10,7 +10,7 @@
 
 # Email entity data model.
 #
-# @!attribute [rw] attachment
+# @!attribute [rw] attachments
 #   @return [Array]
 #
 # @!attribute [rw] body
@@ -28,7 +28,7 @@
 # @!attribute [rw] subject
 #   @return [String]
 Email = Struct.new(
-  :attachment,
+  :attachments,
   :body,
   :from,
   :id,
@@ -39,7 +39,7 @@ Email = Struct.new(
 
 # Request payload for Email#list.
 #
-# @!attribute [rw] attachment
+# @!attribute [rw] attachments
 #   @return [Array, nil]
 #
 # @!attribute [rw] body
@@ -57,7 +57,7 @@ Email = Struct.new(
 # @!attribute [rw] subject
 #   @return [String, nil]
 EmailListMatch = Struct.new(
-  :attachment,
+  :attachments,
   :body,
   :from,
   :id,
@@ -68,43 +68,43 @@ EmailListMatch = Struct.new(
 
 # Mailbox entity data model.
 #
-# @!attribute [rw] code
-#   @return [String, nil]
-#
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] domain
 #   @return [String, nil]
 #
-# @!attribute [rw] msg
+# @!attribute [rw] email
+#   @return [String, nil]
+#
+# @!attribute [rw] expires_at
+#   @return [Integer, nil]
+#
+# @!attribute [rw] id
 #   @return [String, nil]
 Mailbox = Struct.new(
-  :code,
-  :data,
   :domain,
-  :msg,
+  :email,
+  :expires_at,
+  :id,
   keyword_init: true
 )
 
 # Request payload for Mailbox#create.
 #
-# @!attribute [rw] code
-#   @return [String, nil]
-#
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] domain
 #   @return [String, nil]
 #
-# @!attribute [rw] msg
+# @!attribute [rw] email
+#   @return [String, nil]
+#
+# @!attribute [rw] expires_at
+#   @return [Integer, nil]
+#
+# @!attribute [rw] id
 #   @return [String, nil]
 MailboxCreateData = Struct.new(
-  :code,
-  :data,
   :domain,
-  :msg,
+  :email,
+  :expires_at,
+  :id,
   keyword_init: true
 )
 

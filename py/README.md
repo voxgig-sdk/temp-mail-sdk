@@ -127,7 +127,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TempMailSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 email = client.Email().list()
 # email contains the mock response record
 ```
@@ -227,7 +228,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -249,7 +250,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `from` |  |
 | `id` |  |
@@ -264,10 +265,10 @@ API path: `/get-emails`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `data` |  |
 | `domain` |  |
-| `msg` |  |
+| `email` |  |
+| `expires_at` |  |
+| `id` |  |
 
 Operations: Create.
 
@@ -292,7 +293,7 @@ Create an instance: `email = client.Email()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `list` |  |
+| `attachments` | `list` |  |
 | `body` | `str` |  |
 | `from` | `str` |  |
 | `id` | `str` |  |
@@ -320,10 +321,10 @@ Create an instance: `mailbox = client.Mailbox()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `str` |  |
-| `data` | `dict` |  |
 | `domain` | `str` |  |
-| `msg` | `str` |  |
+| `email` | `str` |  |
+| `expires_at` | `int` |  |
+| `id` | `str` |  |
 
 #### Example: Create
 

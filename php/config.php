@@ -36,7 +36,7 @@ class TempMailConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'attachment',
+              'name' => 'attachments',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -98,6 +98,7 @@ class TempMailConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/get-emails',
                   'parts' => [
@@ -110,7 +111,7 @@ class TempMailConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'index$' => 0,
                 ],
@@ -126,28 +127,28 @@ class TempMailConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'code',
+              'name' => 'domain',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'data',
+              'name' => 'email',
               'req' => false,
-              'type' => '`$OBJECT`',
+              'type' => '`$STRING`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'domain',
+              'name' => 'expires_at',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$INTEGER`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'msg',
+              'name' => 'id',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 3,
@@ -162,6 +163,7 @@ class TempMailConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/create',
                   'parts' => [
@@ -170,7 +172,7 @@ class TempMailConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'index$' => 0,
                 ],

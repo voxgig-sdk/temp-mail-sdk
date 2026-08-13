@@ -37,7 +37,7 @@ class EmailEntity extends TempMailEntityBase<Email> {
 
 
 
-  async list(this: any, reqmatch?: EmailListMatch, ctrl?: Control): Promise<Email[]> {
+  async list(this: any, reqmatch?: EmailListMatch, ctrl?: Control): Promise<EmailEntity[]> {
 
     const utility = this._utility
 

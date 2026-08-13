@@ -37,7 +37,9 @@ const client = new TempMailSDK({
 
 ### 2. List email records
 
-`list()` resolves to an array of Email objects — iterate it directly:
+`list()` resolves to an array of Email ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const emails = await client.Email().list()
@@ -122,7 +124,8 @@ Create a mock client for unit testing — no server required:
 const client = TempMailSDK.test()
 
 const email = await client.Email().list()
-// email is a bare entity populated with mock response data
+// email is the entity, populated with mock response data
+// — call email.data() for the record itself
 console.log(email)
 ```
 
@@ -293,7 +296,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `from` |  |
 | `id` |  |
@@ -308,10 +311,10 @@ API path: `/get-emails`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `data` |  |
 | `domain` |  |
-| `msg` |  |
+| `email` |  |
+| `expires_at` |  |
+| `id` |  |
 
 Operations: create.
 
@@ -336,7 +339,7 @@ Create an instance: `const email = client.Email()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `any[]` |  |
+| `attachments` | `any[]` |  |
 | `body` | `string` |  |
 | `from` | `string` |  |
 | `id` | `string` |  |
@@ -364,10 +367,10 @@ Create an instance: `const mailbox = client.Mailbox()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `string` |  |
-| `data` | `Record<string, any>` |  |
 | `domain` | `string` |  |
-| `msg` | `string` |  |
+| `email` | `string` |  |
+| `expires_at` | `number` |  |
+| `id` | `string` |  |
 
 #### Example: Create
 

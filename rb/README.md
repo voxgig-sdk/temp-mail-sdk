@@ -39,7 +39,7 @@ begin
   # list returns an Array of Email records — iterate directly.
   emails = client.Email.list
   emails.each do |item|
-    puts "#{item["id"]} #{item["attachment"]}"
+    puts "#{item["id"]} #{item["attachments"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = TempMailSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 email = client.Email.list()
 puts email
 ```
@@ -242,7 +243,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `from` |  |
 | `id` |  |
@@ -257,10 +258,10 @@ API path: `/get-emails`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `data` |  |
 | `domain` |  |
-| `msg` |  |
+| `email` |  |
+| `expires_at` |  |
+| `id` |  |
 
 Operations: Create.
 
@@ -285,7 +286,7 @@ Create an instance: `email = client.Email`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `Array` |  |
+| `attachments` | `Array` |  |
 | `body` | `String` |  |
 | `from` | `String` |  |
 | `id` | `String` |  |
@@ -314,10 +315,10 @@ Create an instance: `mailbox = client.Mailbox`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `String` |  |
-| `data` | `Hash` |  |
 | `domain` | `String` |  |
-| `msg` | `String` |  |
+| `email` | `String` |  |
+| `expires_at` | `Integer` |  |
+| `id` | `String` |  |
 
 #### Example: Create
 

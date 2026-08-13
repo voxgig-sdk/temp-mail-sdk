@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import TempMailControl
-from core.error import TempMailError
-from core.result import TempMailResult
-from core.spec import TempMailSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import TempMailControl
+from projectname_sdk.core.error import TempMailError
+from projectname_sdk.core.result import TempMailResult
+from projectname_sdk.core.spec import TempMailSpec
 
 
 # True when this SDK was generated with the named feature.

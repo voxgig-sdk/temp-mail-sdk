@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from tempmail_sdk.utility.voxgig_struct import voxgig_struct as vs
 from tempmail_sdk import TempMailSDK
-from core import helpers
+from tempmail_sdk.core import helpers
 from test import runner
 
 
@@ -58,16 +58,16 @@ def _email_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "TEMPMAIL_TEST_EMAIL_ENTID": {},
-        "TEMPMAIL_TEST_LIVE": "FALSE",
-        "TEMPMAIL_APIKEY": "NONE",
+        "TEMP_MAIL_TEST_EMAIL_ENTID": {},
+        "TEMP_MAIL_TEST_LIVE": "FALSE",
+        "TEMP_MAIL_APIKEY": "NONE",
     })
 
-    live = env.get("TEMPMAIL_TEST_LIVE") == "TRUE"
+    live = env.get("TEMP_MAIL_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("TEMPMAIL_APIKEY"),
+            "apikey": env.get("TEMP_MAIL_APIKEY"),
         }
         client = TempMailSDK(merged_opts)
         return {
