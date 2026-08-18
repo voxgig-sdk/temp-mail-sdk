@@ -28,7 +28,7 @@ class TempMailSDK
     utility = TempMailUtility.new
     @_utility = utility
 
-    config = TempMailConfig.make_config
+    config = TempMailConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

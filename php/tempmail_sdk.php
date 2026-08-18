@@ -40,7 +40,7 @@ class TempMailSDK
         $utility = new TempMailUtility();
         $this->_utility = $utility;
 
-        $config = TempMailConfig::make_config();
+        $config = TempMailConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
