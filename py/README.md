@@ -250,12 +250,12 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `attachments` |  |
-| `body` |  |
-| `from` |  |
-| `id` |  |
-| `received_at` |  |
-| `subject` |  |
+| `attachments` | List of attachments in the email |
+| `body` | Body content of the email |
+| `from` | Email address of the sender |
+| `id` | Unique identifier for the email |
+| `received_at` | Unix timestamp when the email was received |
+| `subject` | Subject line of the email |
 
 Operations: List.
 
@@ -265,10 +265,10 @@ API path: `/get-emails`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
-| `email` |  |
-| `expires_at` |  |
-| `id` |  |
+| `domain` | Optional domain for the temporary email address |
+| `email` | Generated temporary email address |
+| `expires_at` | Unix timestamp when the mailbox expires |
+| `id` | Unique identifier for the mailbox |
 
 Operations: Create.
 
@@ -293,12 +293,12 @@ Create an instance: `email = client.Email()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `list` |  |
-| `body` | `str` |  |
-| `from` | `str` |  |
-| `id` | `str` |  |
-| `received_at` | `int` |  |
-| `subject` | `str` |  |
+| `attachments` | `list` | List of attachments in the email |
+| `body` | `str` | Body content of the email |
+| `from` | `str` | Email address of the sender |
+| `id` | `str` | Unique identifier for the email |
+| `received_at` | `int` | Unix timestamp when the email was received |
+| `subject` | `str` | Subject line of the email |
 
 #### Example: List
 
@@ -321,10 +321,10 @@ Create an instance: `mailbox = client.Mailbox()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `str` |  |
-| `email` | `str` |  |
-| `expires_at` | `int` |  |
-| `id` | `str` |  |
+| `domain` | `str` | Optional domain for the temporary email address |
+| `email` | `str` | Generated temporary email address |
+| `expires_at` | `int` | Unix timestamp when the mailbox expires |
+| `id` | `str` | Unique identifier for the mailbox |
 
 #### Example: Create
 

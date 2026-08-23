@@ -243,12 +243,12 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `attachments` |  |
-| `body` |  |
-| `from` |  |
-| `id` |  |
-| `received_at` |  |
-| `subject` |  |
+| `attachments` | List of attachments in the email |
+| `body` | Body content of the email |
+| `from` | Email address of the sender |
+| `id` | Unique identifier for the email |
+| `received_at` | Unix timestamp when the email was received |
+| `subject` | Subject line of the email |
 
 Operations: List.
 
@@ -258,10 +258,10 @@ API path: `/get-emails`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
-| `email` |  |
-| `expires_at` |  |
-| `id` |  |
+| `domain` | Optional domain for the temporary email address |
+| `email` | Generated temporary email address |
+| `expires_at` | Unix timestamp when the mailbox expires |
+| `id` | Unique identifier for the mailbox |
 
 Operations: Create.
 
@@ -286,12 +286,12 @@ Create an instance: `email = client.Email`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `Array` |  |
-| `body` | `String` |  |
-| `from` | `String` |  |
-| `id` | `String` |  |
-| `received_at` | `Integer` |  |
-| `subject` | `String` |  |
+| `attachments` | `Array` | List of attachments in the email |
+| `body` | `String` | Body content of the email |
+| `from` | `String` | Email address of the sender |
+| `id` | `String` | Unique identifier for the email |
+| `received_at` | `Integer` | Unix timestamp when the email was received |
+| `subject` | `String` | Subject line of the email |
 
 #### Example: List
 
@@ -315,10 +315,10 @@ Create an instance: `mailbox = client.Mailbox`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `String` |  |
-| `email` | `String` |  |
-| `expires_at` | `Integer` |  |
-| `id` | `String` |  |
+| `domain` | `String` | Optional domain for the temporary email address |
+| `email` | `String` | Generated temporary email address |
+| `expires_at` | `Integer` | Unix timestamp when the mailbox expires |
+| `id` | `String` | Unique identifier for the mailbox |
 
 #### Example: Create
 

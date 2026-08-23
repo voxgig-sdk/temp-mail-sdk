@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "TempMail",
+			"slug": "temp-mail",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -38,30 +41,36 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "attachments",
 						"req": true,
+						"short": "List of attachments in the email",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "body",
 						"req": true,
+						"short": "Body content of the email",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "from",
 						"req": true,
+						"short": "Email address of the sender",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
 						"req": true,
+						"short": "Unique identifier for the email",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "received_at",
+						"short": "Unix timestamp when the email was received",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "subject",
 						"req": true,
+						"short": "Subject line of the email",
 						"type": "`$STRING`",
 					},
 				},
@@ -111,18 +120,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "domain",
+						"short": "Optional domain for the temporary email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "email",
+						"short": "Generated temporary email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "expires_at",
+						"short": "Unix timestamp when the mailbox expires",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the mailbox",
 						"type": "`$STRING`",
 					},
 				},

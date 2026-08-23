@@ -8,21 +8,25 @@ main: kit: entity: mailbox: {
     {
       name: "domain"
       req: false
+      short: "Optional domain for the temporary email address"
       type: "`$STRING`"
     }
     {
       name: "email"
       req: false
+      short: "Generated temporary email address"
       type: "`$STRING`"
     }
     {
       name: "expires_at"
       req: false
+      short: "Unix timestamp when the mailbox expires"
       type: "`$INTEGER`"
     }
     {
       name: "id"
       req: false
+      short: "Unique identifier for the mailbox"
       type: "`$STRING`"
     }
   ]

@@ -238,12 +238,12 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `attachments` |  |
-| `body` |  |
-| `from` |  |
-| `id` |  |
-| `received_at` |  |
-| `subject` |  |
+| `attachments` | List of attachments in the email |
+| `body` | Body content of the email |
+| `from` | Email address of the sender |
+| `id` | Unique identifier for the email |
+| `received_at` | Unix timestamp when the email was received |
+| `subject` | Subject line of the email |
 
 Operations: List.
 
@@ -253,10 +253,10 @@ API path: `/get-emails`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
-| `email` |  |
-| `expires_at` |  |
-| `id` |  |
+| `domain` | Optional domain for the temporary email address |
+| `email` | Generated temporary email address |
+| `expires_at` | Unix timestamp when the mailbox expires |
+| `id` | Unique identifier for the mailbox |
 
 Operations: Create.
 
@@ -281,12 +281,12 @@ Create an instance: `local email = client:Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `table` |  |
-| `body` | `string` |  |
-| `from` | `string` |  |
-| `id` | `string` |  |
-| `received_at` | `number` |  |
-| `subject` | `string` |  |
+| `attachments` | `table` | List of attachments in the email |
+| `body` | `string` | Body content of the email |
+| `from` | `string` | Email address of the sender |
+| `id` | `string` | Unique identifier for the email |
+| `received_at` | `number` | Unix timestamp when the email was received |
+| `subject` | `string` | Subject line of the email |
 
 #### Example: List
 
@@ -309,10 +309,10 @@ Create an instance: `local mailbox = client:Mailbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `string` |  |
-| `email` | `string` |  |
-| `expires_at` | `number` |  |
-| `id` | `string` |  |
+| `domain` | `string` | Optional domain for the temporary email address |
+| `email` | `string` | Generated temporary email address |
+| `expires_at` | `number` | Unix timestamp when the mailbox expires |
+| `id` | `string` | Unique identifier for the mailbox |
 
 #### Example: Create
 

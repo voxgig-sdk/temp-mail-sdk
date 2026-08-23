@@ -19,6 +19,9 @@ module TempMailConfig
     {
       "main" => {
         "name" => "TempMail",
+        "slug" => "temp-mail",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -46,30 +49,36 @@ module TempMailConfig
             {
               "name" => "attachments",
               "req" => true,
+              "short" => "List of attachments in the email",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "body",
               "req" => true,
+              "short" => "Body content of the email",
               "type" => "`$STRING`",
             },
             {
               "name" => "from",
               "req" => true,
+              "short" => "Email address of the sender",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
               "req" => true,
+              "short" => "Unique identifier for the email",
               "type" => "`$STRING`",
             },
             {
               "name" => "received_at",
+              "short" => "Unix timestamp when the email was received",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "subject",
               "req" => true,
+              "short" => "Subject line of the email",
               "type" => "`$STRING`",
             },
           ],
@@ -119,18 +128,22 @@ module TempMailConfig
           "fields" => [
             {
               "name" => "domain",
+              "short" => "Optional domain for the temporary email address",
               "type" => "`$STRING`",
             },
             {
               "name" => "email",
+              "short" => "Generated temporary email address",
               "type" => "`$STRING`",
             },
             {
               "name" => "expires_at",
+              "short" => "Unix timestamp when the mailbox expires",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "id",
+              "short" => "Unique identifier for the mailbox",
               "type" => "`$STRING`",
             },
           ],

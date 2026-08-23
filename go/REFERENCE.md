@@ -103,12 +103,12 @@ fmt.Println(email.GetName()) // "email"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachments` | `[]any` | Yes |  |
-| `body` | `string` | Yes |  |
-| `from` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `received_at` | `int` | No |  |
-| `subject` | `string` | Yes |  |
+| `attachments` | `[]any` | Yes | List of attachments in the email |
+| `body` | `string` | Yes | Body content of the email |
+| `from` | `string` | Yes | Email address of the sender |
+| `id` | `string` | Yes | Unique identifier for the email |
+| `received_at` | `int` | No | Unix timestamp when the email was received |
+| `subject` | `string` | Yes | Subject line of the email |
 
 ### Operations
 
@@ -159,10 +159,10 @@ fmt.Println(mailbox.GetName()) // "mailbox"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `string` | No |  |
-| `email` | `string` | No |  |
-| `expires_at` | `int` | No |  |
-| `id` | `string` | No |  |
+| `domain` | `string` | No | Optional domain for the temporary email address |
+| `email` | `string` | No | Generated temporary email address |
+| `expires_at` | `int` | No | Unix timestamp when the mailbox expires |
+| `id` | `string` | No | Unique identifier for the mailbox |
 
 ### Operations
 

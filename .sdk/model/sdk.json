@@ -36,36 +36,42 @@
               "active": true,
               "name": "attachments",
               "req": true,
+              "short": "List of attachments in the email",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "body",
               "req": true,
+              "short": "Body content of the email",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "from",
               "req": true,
+              "short": "Email address of the sender",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": true,
+              "short": "Unique identifier for the email",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "received_at",
               "req": false,
+              "short": "Unix timestamp when the email was received",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "subject",
               "req": true,
+              "short": "Subject line of the email",
               "type": "`$STRING`"
             }
           ],
@@ -127,24 +133,28 @@
               "active": true,
               "name": "domain",
               "req": false,
+              "short": "Optional domain for the temporary email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "email",
               "req": false,
+              "short": "Generated temporary email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "expires_at",
               "req": false,
+              "short": "Unix timestamp when the mailbox expires",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the mailbox",
               "type": "`$STRING`"
             }
           ],

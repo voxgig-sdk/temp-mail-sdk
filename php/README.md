@@ -253,12 +253,12 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `attachments` |  |
-| `body` |  |
-| `from` |  |
-| `id` |  |
-| `received_at` |  |
-| `subject` |  |
+| `attachments` | List of attachments in the email |
+| `body` | Body content of the email |
+| `from` | Email address of the sender |
+| `id` | Unique identifier for the email |
+| `received_at` | Unix timestamp when the email was received |
+| `subject` | Subject line of the email |
 
 Operations: List.
 
@@ -268,10 +268,10 @@ API path: `/get-emails`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
-| `email` |  |
-| `expires_at` |  |
-| `id` |  |
+| `domain` | Optional domain for the temporary email address |
+| `email` | Generated temporary email address |
+| `expires_at` | Unix timestamp when the mailbox expires |
+| `id` | Unique identifier for the mailbox |
 
 Operations: Create.
 
@@ -296,12 +296,12 @@ Create an instance: `$email = $client->Email();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `array` |  |
-| `body` | `string` |  |
-| `from` | `string` |  |
-| `id` | `string` |  |
-| `received_at` | `int` |  |
-| `subject` | `string` |  |
+| `attachments` | `array` | List of attachments in the email |
+| `body` | `string` | Body content of the email |
+| `from` | `string` | Email address of the sender |
+| `id` | `string` | Unique identifier for the email |
+| `received_at` | `int` | Unix timestamp when the email was received |
+| `subject` | `string` | Subject line of the email |
 
 #### Example: List
 
@@ -325,10 +325,10 @@ Create an instance: `$mailbox = $client->Mailbox();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `string` |  |
-| `email` | `string` |  |
-| `expires_at` | `int` |  |
-| `id` | `string` |  |
+| `domain` | `string` | Optional domain for the temporary email address |
+| `email` | `string` | Generated temporary email address |
+| `expires_at` | `int` | Unix timestamp when the mailbox expires |
+| `id` | `string` | Unique identifier for the mailbox |
 
 #### Example: Create
 

@@ -92,12 +92,12 @@ email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachments` | `list` | Yes |  |
-| `body` | `str` | Yes |  |
-| `from` | `str` | Yes |  |
-| `id` | `str` | Yes |  |
-| `received_at` | `int` | No |  |
-| `subject` | `str` | Yes |  |
+| `attachments` | `list` | Yes | List of attachments in the email |
+| `body` | `str` | Yes | Body content of the email |
+| `from` | `str` | Yes | Email address of the sender |
+| `id` | `str` | Yes | Unique identifier for the email |
+| `received_at` | `int` | No | Unix timestamp when the email was received |
+| `subject` | `str` | Yes | Subject line of the email |
 
 ### Operations
 
@@ -150,10 +150,10 @@ mailbox = client.Mailbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `str` | No |  |
-| `email` | `str` | No |  |
-| `expires_at` | `int` | No |  |
-| `id` | `str` | No |  |
+| `domain` | `str` | No | Optional domain for the temporary email address |
+| `email` | `str` | No | Generated temporary email address |
+| `expires_at` | `int` | No | Unix timestamp when the mailbox expires |
+| `id` | `str` | No | Unique identifier for the mailbox |
 
 ### Operations
 

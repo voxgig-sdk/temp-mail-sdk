@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "TempMail",
+            "slug": "temp-mail",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -55,30 +58,36 @@ def make_config():
           {
             "name": "attachments",
             "req": True,
+            "short": "List of attachments in the email",
             "type": "`$ARRAY`",
           },
           {
             "name": "body",
             "req": True,
+            "short": "Body content of the email",
             "type": "`$STRING`",
           },
           {
             "name": "from",
             "req": True,
+            "short": "Email address of the sender",
             "type": "`$STRING`",
           },
           {
             "name": "id",
             "req": True,
+            "short": "Unique identifier for the email",
             "type": "`$STRING`",
           },
           {
             "name": "received_at",
+            "short": "Unix timestamp when the email was received",
             "type": "`$INTEGER`",
           },
           {
             "name": "subject",
             "req": True,
+            "short": "Subject line of the email",
             "type": "`$STRING`",
           },
         ],
@@ -128,18 +137,22 @@ def make_config():
         "fields": [
           {
             "name": "domain",
+            "short": "Optional domain for the temporary email address",
             "type": "`$STRING`",
           },
           {
             "name": "email",
+            "short": "Generated temporary email address",
             "type": "`$STRING`",
           },
           {
             "name": "expires_at",
+            "short": "Unix timestamp when the mailbox expires",
             "type": "`$INTEGER`",
           },
           {
             "name": "id",
+            "short": "Unique identifier for the mailbox",
             "type": "`$STRING`",
           },
         ],
