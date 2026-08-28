@@ -26,12 +26,7 @@ class Email
 /** Request payload for Email#list. */
 class EmailListMatch
 {
-    public ?array $attachments = null;
-    public ?string $body = null;
-    public ?string $from = null;
-    public ?string $id = null;
-    public ?int $received_at = null;
-    public ?string $subject = null;
+    public string $id;
 }
 
 /** Mailbox entity data model. */

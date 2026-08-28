@@ -15,12 +15,7 @@
 ---@field subject string
 
 ---@class EmailListMatch
----@field attachments? table
----@field body? string
----@field from? string
----@field id? string
----@field received_at? number
----@field subject? string
+---@field id string
 
 ---@class Mailbox
 ---@field domain? string

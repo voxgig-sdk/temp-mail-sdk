@@ -24,12 +24,7 @@ type Email struct {
 
 // EmailListMatch is the typed request payload for Email.ListTyped.
 type EmailListMatch struct {
-	Attachments *[]any `json:"attachments,omitempty"`
-	Body *string `json:"body,omitempty"`
-	From *string `json:"from,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ReceivedAt *int `json:"received_at,omitempty"`
-	Subject *string `json:"subject,omitempty"`
+	Id string `json:"id"`
 }
 
 // Mailbox is the typed data model for the mailbox entity.

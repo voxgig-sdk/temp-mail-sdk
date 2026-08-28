@@ -39,30 +39,10 @@ Email = Struct.new(
 
 # Request payload for Email#list.
 #
-# @!attribute [rw] attachments
-#   @return [Array, nil]
-#
-# @!attribute [rw] body
-#   @return [String, nil]
-#
-# @!attribute [rw] from
-#   @return [String, nil]
-#
 # @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] received_at
-#   @return [Integer, nil]
-#
-# @!attribute [rw] subject
-#   @return [String, nil]
+#   @return [String]
 EmailListMatch = Struct.new(
-  :attachments,
-  :body,
-  :from,
   :id,
-  :received_at,
-  :subject,
   keyword_init: true
 )
 

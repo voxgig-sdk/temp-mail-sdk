@@ -15,12 +15,7 @@ export interface Email {
 }
 
 export interface EmailListMatch {
-  attachments?: any[]
-  body?: string
-  from?: string
-  id?: string
-  received_at?: number
-  subject?: string
+  id: string
 }
 
 export interface Mailbox {

@@ -27,12 +27,8 @@ class Email(EmailRequired, total=False):
     received_at: int
 
 
-class EmailListMatch(TypedDict, total=False):
-    attachments: list
-    body: str
+class EmailListMatch(TypedDict):
     id: str
-    received_at: int
-    subject: str
 
 
 class Mailbox(TypedDict, total=False):
