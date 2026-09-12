@@ -97,6 +97,10 @@ class TempMailConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'email',
           'op' => [
             'list' => [
@@ -119,8 +123,10 @@ class TempMailConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/get-emails',
-                  'parts' => [
-                    'get-emails',
+                  'segments' => [
+                    [
+                      'lit' => 'get-emails',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -130,6 +136,9 @@ class TempMailConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'get-emails',
                   ],
                 ],
               ],
@@ -162,6 +171,10 @@ class TempMailConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'mailbox',
           'op' => [
             'create' => [
@@ -173,13 +186,18 @@ class TempMailConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/create',
-                  'parts' => [
-                    'create',
+                  'segments' => [
+                    [
+                      'lit' => 'create',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'create',
                   ],
                 ],
               ],

@@ -68,8 +68,10 @@ main: kit: entity: email: {
           }
           method: "GET"
           orig: "/get-emails"
-          parts: [
-            "get-emails"
+          segments: [
+            {
+              lit: "get-emails"
+            }
           ]
           select: {
             exist: [

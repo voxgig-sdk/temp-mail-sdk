@@ -44,8 +44,10 @@ main: kit: entity: mailbox: {
         {
           method: "POST"
           orig: "/create"
-          parts: [
-            "create"
+          segments: [
+            {
+              lit: "create"
+            }
           ]
           transform: {
             req: "`reqdata`"

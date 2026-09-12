@@ -71,6 +71,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "email",
         ["op"] = {
           ["list"] = {
@@ -93,8 +97,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/get-emails",
-                ["parts"] = {
-                  "get-emails",
+                ["segments"] = {
+                  {
+                    ["lit"] = "get-emails",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -104,6 +110,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "get-emails",
                 },
               },
             },
@@ -136,6 +145,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "mailbox",
         ["op"] = {
           ["create"] = {
@@ -147,13 +160,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/create",
-                ["parts"] = {
-                  "create",
+                ["segments"] = {
+                  {
+                    ["lit"] = "create",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "create",
                 },
               },
             },

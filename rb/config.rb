@@ -83,6 +83,10 @@ module TempMailConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "email",
           "op" => {
             "list" => {
@@ -105,8 +109,10 @@ module TempMailConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/get-emails",
-                  "parts" => [
-                    "get-emails",
+                  "segments" => [
+                    {
+                      "lit" => "get-emails",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -117,6 +123,9 @@ module TempMailConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "get-emails",
+                  ],
                 },
               ],
             },
@@ -148,6 +157,10 @@ module TempMailConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "mailbox",
           "op" => {
             "create" => {
@@ -159,14 +172,19 @@ module TempMailConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/create",
-                  "parts" => [
-                    "create",
+                  "segments" => [
+                    {
+                      "lit" => "create",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "create",
+                  ],
                 },
               ],
             },
