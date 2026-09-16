@@ -1,12 +1,18 @@
 # TempMail SDK feature factory
 
 from tempmail_sdk.feature.base_feature import TempMailBaseFeature
+from tempmail_sdk.feature.ratelimit_feature import TempMailRatelimitFeature
+from tempmail_sdk.feature.retry_feature import TempMailRetryFeature
 from tempmail_sdk.feature.test_feature import TempMailTestFeature
+from tempmail_sdk.feature.timeout_feature import TempMailTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: TempMailBaseFeature(),
+    "ratelimit": lambda: TempMailRatelimitFeature(),
+    "retry": lambda: TempMailRetryFeature(),
     "test": lambda: TempMailTestFeature(),
+    "timeout": lambda: TempMailTimeoutFeature(),
 }
 
 
