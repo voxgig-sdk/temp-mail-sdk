@@ -105,12 +105,12 @@ local results, err = client:Email():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/temp-mail-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temp-mail-sdk/releases) |
-| Python | `voxgig-sdk-temp-mail` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temp-mail-sdk/releases) |
-| PHP | `voxgig-sdk/temp-mail` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temp-mail-sdk/releases) |
+| TypeScript | `@voxgig-sdk/temp-mail-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temp-mail-sdk/tags) |
+| Python | `voxgig-sdk-temp-mail` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temp-mail-sdk/tags) |
+| PHP | `voxgig-sdk/temp-mail` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temp-mail-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/temp-mail-sdk/go` | `go get github.com/voxgig-sdk/temp-mail-sdk/go@latest` |
-| Ruby | `voxgig-sdk-temp-mail` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temp-mail-sdk/releases) |
-| Lua | `voxgig-sdk-temp-mail` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temp-mail-sdk/releases) |
+| Ruby | `voxgig-sdk-temp-mail` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temp-mail-sdk/tags) |
+| Lua | `voxgig-sdk-temp-mail` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temp-mail-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/temp-mail-sdk/go-cli` | `go install github.com/voxgig-sdk/temp-mail-sdk/go-cli/cmd/temp-mail@latest` |
 | Go MCP server | `github.com/voxgig-sdk/temp-mail-sdk/go-mcp` | `go get github.com/voxgig-sdk/temp-mail-sdk/go-mcp@latest` |
 

@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicEmailFlow.aon"
-@"BasicMailboxFlow.aon"
+@"./BasicEmailFlow.aon"
+@"./BasicMailboxFlow.aon"
